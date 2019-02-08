@@ -1,0 +1,22 @@
+# .gitignore file optimized for basic IntelliJ projects
+# 2018, Hauke Sommerfeld: https://github.com/haukesomm
+
+# macOS specific:
+.DS_Store
+
+# Windows specific:
+Thumbs.db
+
+# IntelliJ specific:
+.idea/*
+!.idea/fileTemplates/
+
+*.iml
+local.properties
+
+# Build directories:
+build/
+app/build/
+
+Gradle specific:
+.gradle

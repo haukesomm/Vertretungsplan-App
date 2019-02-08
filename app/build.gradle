@@ -1,0 +1,40 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+
+    defaultConfig {
+        applicationId "de.haukesomm.vertretungsplan"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 53
+        versionName "2.0.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            versionNameSuffix '-release'
+        }
+        debug {
+            versionNameSuffix '-debug'
+        }
+    }
+
+    productFlavors {
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.preference:preference:1.1.0-alpha02'
+    implementation 'com.google.android.material:material:1.1.0-alpha03'
+    implementation 'org.jsoup:jsoup:1.11.3'
+}

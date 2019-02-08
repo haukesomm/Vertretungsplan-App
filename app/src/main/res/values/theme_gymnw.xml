@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Copyright 2016-2019 Hauke Sommerfeld
+
+     This file is part of the 'Vertretungsplan-App' project:
+     https://github.com/haukesomm/Vertretungsplan-App
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+    <!-- COLOR PALETTE OF THE THEME -->
+
+    <color name="colorPrimary">#ff9800</color>
+    <color name="colorPrimaryDark">#f57c00</color>
+    <color name="colorAccent">#3f51b5</color>
+    <color name="colorAccentLight">#9FA8DA</color>
+    <color name="colorPassive">#757575</color>
+
+    <color name="colorToolbarTextPrimary">@android:color/white</color>
+    <color name="colorToolbarTextSecondary">@android:color/white</color>
+    <color name="colorToolbarIcons">@android:color/white</color>
+
+    <color name="colorBackground">@android:color/white</color>
+    <color name="colorBackgroundDark">#DCDCDC</color>
+    <color name="colorDivider">@color/colorBackgroundDark</color>
+
+    <color name="colorImportant">#F44336</color>
+
+
+    <!-- ACTUAL STYLES OF THE THEME -->
+
+    <style name="GymNW.Base" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="GymNW" parent="GymNW.Base">
+        <!-- Might be overridden on higher APIs -->
+    </style>
+
+    <style name="GymNW.TransparentStatusBar" parent="GymNW">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="GymNW.LightStatusBar" parent="GymNW">
+        <!-- Fallback for devices not supporting light status bars -->
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="GymNW.Toolbar" parent="GymNW">
+        <item name="actionMenuTextColor">@color/colorToolbarTextPrimary</item>
+        <item name="android:textColorPrimary">@color/colorToolbarTextPrimary</item>
+        <item name="android:textColorSecondary">@color/colorToolbarTextSecondary</item>
+    </style>
+</resources>

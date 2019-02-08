@@ -1,0 +1,4 @@
+1)	Vector drawables under /app/src/main/res/drawable may originally be part of
+	the 'Material Design Icons' repository from Google.
+	All of them are also licensed under the Apache License, Version 2.0.
+	See https://github.com/google/material-design-icons for more information.

@@ -1,0 +1,21 @@
+<!-- Copyright (C) 2016-2019 Hauke Sommerfeld
+     This file is part of the 'Vertretungsplan-App' project;
+     https://github.com/haukesomm/Vertretungsplan-App
+
+     Licensed under the Apache License, Version 2.0.
+     See LICENSE for more information.
+
+     This vector drawable was generated from the official GitHub SVG resource for developers.
+-->
+
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:height="24dp"
+    android:width="24dp"
+    android:viewportHeight="48.0"
+    android:viewportWidth="48.0">
+    <!-- Color needs to be set here due to the button-tint-attribute not being present on APIs < M -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="m23.97,2.99c-11.99,0 -21.72,9.72 -21.72,21.72 0,9.6 6.22,17.74 14.85,20.61 1.09,0.2 1.48,-0.47 1.48,-1.05 0,-0.51 -0.02,-1.88 -0.03,-3.69 -6.04,1.31 -7.32,-2.91 -7.32,-2.91 -0.99,-2.51 -2.41,-3.18 -2.41,-3.18 -1.97,-1.35 0.15,-1.32 0.15,-1.32 2.18,0.15 3.33,2.24 3.33,2.24 1.94,3.32 5.08,2.36 6.32,1.81 0.2,-1.4 0.76,-2.36 1.38,-2.9 -4.82,-0.55 -9.89,-2.41 -9.89,-10.73 0,-2.37 0.85,-4.31 2.24,-5.83 -0.22,-0.55 -0.97,-2.76 0.21,-5.75 0,0 1.82,-0.58 5.97,2.23 1.73,-0.48 3.59,-0.72 5.44,-0.73 1.84,0.01 3.7,0.25 5.44,0.73 4.15,-2.81 5.97,-2.23 5.97,-2.23 1.19,2.99 0.44,5.2 0.22,5.75 1.39,1.52 2.23,3.46 2.23,5.83 0,8.34 -5.08,10.18 -9.92,10.72 0.78,0.67 1.47,2 1.47,4.02 0,2.9 -0.03,5.25 -0.03,5.96 0,0.58 0.39,1.26 1.49,1.05 8.62,-2.88 14.84,-11.01 14.84,-20.61 0,-12 -9.73,-21.72 -21.72,-21.72" android:strokeColor="#00000000"/>
+</vector>
