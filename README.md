@@ -1,5 +1,5 @@
 <div align="center">
-	<div><img src="/app/src/main/res/mipmap-xhdpi/ic_launcher.png"/></div>
+	<div><img src="artwork/logo-512x512.png" width="15%"/></div>
 	<div><a href='https://play.google.com/store/apps/details?id=de.haukesomm.vertretungsplan&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/ width="247" height="96"></a></div>
 </div>
 
