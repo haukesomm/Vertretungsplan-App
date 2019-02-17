@@ -19,7 +19,9 @@
 
 package de.haukesomm.vertretungsplan.plan
 
+import android.util.Log
 import org.jsoup.Jsoup
+import java.io.IOException
 
 class PlanDownloader {
 
@@ -32,8 +34,10 @@ class PlanDownloader {
                 val document = Jsoup.connect(url.toString()).get()
                 val plan = parser.parse(document)
                 list.add(plan)
+            } catch (io: IOException) {
+                Log.w("PlanDownloader", "Cannot download plan: ${io.message}")
             } catch (p: PlanParserException) {
-                System.err.println("Cannot download plan: ${p.message}")
+                Log.w("PlanDownloader", "Error while parsing the downloaded plan: ${p.message}")
             }
         }
 
