@@ -24,6 +24,37 @@ import org.jsoup.nodes.Element
 import org.jsoup.select.Elements
 import java.lang.StringBuilder
 
+
+// HTML related constants:
+
+private const val HTML_TITLE_CLASS = "mon_title"
+
+
+private const val HTML_MESSAGES_TABLE_CLASS = "info"
+
+private const val HTML_MESSAGES_ROW_TAG = "td"
+
+
+private const val HTML_ENTRIES_TABLE_CLASS = "mon_list"
+
+private const val HTML_ENTRIES_ROW_TAG = "tr"
+
+private const val HTML_ENTRIES_HEADER_TAG = "th"
+
+private const val HTML_ENTRIES_SUBHEADER_CLASS = "inline_header"
+
+private const val HTML_ENTRIES_ATTRIBUTE_CLASS = "list"
+
+
+// Flags used in the format(String, Int) method:
+
+private const val FLAG_SUBSTITUTION: Int = 0x00000001
+
+private const val FLAG_SUBJECT: Int = 0x00000002
+
+private const val FLAG_POSSIBLY_EMPTY: Int = 0x00000003
+
+
 class PlanParser {
 
     @Throws(PlanParserException::class)
@@ -52,15 +83,15 @@ class PlanParser {
     }
 
     private fun parseTitle(document: Document): String {
-        return document.getElementsByClass("mon_title").first().text()
+        return document.getElementsByClass(HTML_TITLE_CLASS).first().text()
     }
 
     private fun parseMessage(document: Document): String {
-        val info: Element? = document.getElementsByClass("info").first()
+        val info: Element? = document.getElementsByClass(HTML_MESSAGES_TABLE_CLASS).first()
         return when (info) {
             null -> "" // There might not be any announcements
             else -> {
-                val messages = info.getElementsByTag("td")
+                val messages = info.getElementsByTag(HTML_MESSAGES_ROW_TAG)
 
                 val builder = StringBuilder()
                 for (m in messages) {
@@ -74,37 +105,45 @@ class PlanParser {
     }
 
     private fun parseEntries(document: Document): Map<Grade, List<PlanEntry>> {
-        val table = document.getElementsByClass("mon_list").first()
-        val rows = table.getElementsByTag("tr")
+        val table = document.getElementsByClass(HTML_ENTRIES_TABLE_CLASS).first()
+        val rows = table.getElementsByTag(HTML_ENTRIES_ROW_TAG)
 
         val map = HashMap<Grade, MutableList<PlanEntry>>()
-        lateinit var grade: Grade
+
+        lateinit var currentGrade: Grade
 
         rows@ for (row in rows) {
-            val elements = row.getElementsByClass("list") // Only get tds
-            val firstTag = elements[1] // 0 is the root tag!
+            val attrs = row.getElementsByClass(HTML_ENTRIES_ATTRIBUTE_CLASS)
+            val first = attrs[1] // 0 is the root tag!
 
-            when {
-                // First tag is table header
-                firstTag.tagName() == "th" -> {
-                    continue@rows
-                }
-                // First tag is inline header
-                firstTag.hasClass("inline_header") -> {
-                    val g = Grade(row.text())
-                    map[g] = ArrayList()
-                    grade = g
-                }
-                // Regular table row
-                else -> {
-                    // If an entry cannot be parsed it will be omitted
-                    try {
-                        val entry = parseEntry(grade, elements)
-                        map[grade]!!.add(entry) // 'last' should always hold a grade
-                    } catch (e: Exception) {
-                        System.err.println(
-                                "Invalid: '${elements.toString().replace("\n", "").replace(Regex("</tr>(.*)$"), "")}'")
-                    }
+            /*
+             * First case: Tag is table header and should be omitted.
+             */
+            if (first.tagName() == HTML_ENTRIES_HEADER_TAG) {
+                continue@rows
+            }
+            /*
+             * Second case: Tag is an inline header.
+             * Create a map entry for the Grade of the inline-header and assign an empty List to it.
+             * The List is then used to store the respective PlanEntries.
+             */
+            else if (first.hasClass(HTML_ENTRIES_SUBHEADER_CLASS)) {
+                val grade = Grade(row.text())
+                map[grade] = ArrayList()
+                currentGrade = grade
+            }
+            /*
+             * Third case: Tag is a regulat table row containing an entry.
+             * Try to parse the entry and add a PlanEntry-object to the map.
+             * If an entry cannot be parsed it will be omitted.
+             */
+            else {
+                try {
+                    val entry = parseEntry(currentGrade, attrs)
+                    map[currentGrade]?.add(entry)
+                } catch (e: Exception) {
+                    // Debug:
+                    System.err.println("Invalid: '${attrs.toString().replace("\n", "").replace(Regex("</tr>(.*)$"), "")}'")
                 }
             }
         }
@@ -113,19 +152,20 @@ class PlanParser {
     }
 
     private fun parseEntry(grade: Grade, elements: Elements): PlanEntry {
-        val lessons =   elements[1]
-        val subject =   elements[2]
-        val room =      elements[3]
-        val comment =   elements[4]
+        val lessons = elements[1]
+        val subject = elements[2]
+        val room = elements[3]
+        val comment = elements[4]
 
         val entry = PlanEntry(
                 lessons.text(),
-                subject.text().formatAsSubstitution().formatAsSubject(),
-                room.text().formatAsSubstitution().formatAsPossiblyEmpty(),
-                comment.text().formatAsPossiblyEmpty())
+                format(subject.text(), FLAG_SUBSTITUTION or FLAG_SUBJECT),
+                format(room.text(), FLAG_SUBSTITUTION or FLAG_POSSIBLY_EMPTY),
+                format(comment.text(), FLAG_POSSIBLY_EMPTY))
 
         if (grade.type == Grade.Type.SENIOR) {
-            entry.course = subject.text().extractCourseName()
+            // Extract course name by removing trailing substitution info ('?...')
+            entry.course = subject.text().replace(Regex("\\?.+$"), "")
         }
 
         if (subject.children().isNotEmpty()
@@ -138,38 +178,46 @@ class PlanParser {
     }
 
 
-    // String extension functions to format plan data:
+    private fun format(string: String, flags: Int): String {
+        var formatted = string
 
-    private fun String.formatAsPossiblyEmpty() = this
-            .replace(Regex("(---)-*"), "")  // Remove strike-through
-            .replace("\u00A0", "")          // Remove NO-BREAK-SPACE
+        if (flags and FLAG_SUBSTITUTION == FLAG_SUBSTITUTION) {
+            // Remove substitution-prefix ('Eng?')
+            formatted = formatted.replace(Regex("^.+\\?"), "")
+        }
 
-    private fun String.formatAsSubstitution() = this
-            .replace(Regex("^.+\\?"), "") // Remove substitution-prefix ('Eng?')
+        if (flags and FLAG_SUBJECT == FLAG_SUBJECT) {
+            // TODO Implement json config
+            formatted = when (formatted) {
+                "Deu" -> "Deutsch"
+                "Eng" -> "Englisch"
+                "Fra" -> "Französisch"
+                "Lat" -> "Latein"
+                "Mat" -> "Mathematik"
+                "Ges" -> "Geschichte"
+                "Pol" -> "Politik"
+                "Erd" -> "Erdkunde"
+                "Bio" -> "Biologie"
+                "Che" -> "Chemie"
+                "Phy" -> "Physik"
+                "Kun" -> "Kunst"
+                "Mus" -> "Musik"
+                "Spo" -> "Sport"
+                "Swi" -> "Schwimmen"
+                "Ver" -> "Klassenlehrerstunde"
+                "Aufg" -> "Vertretungsaufgaben"
+                // Other:
+                "Vertr" -> "Vertretung"
+                else -> formatted
+            }
+        }
 
-    private fun String.formatAsSubject() = when (this) {
-        "Deu" -> "Deutsch"
-        "Eng" -> "Englisch"
-        "Fra" -> "Französisch"
-        "Lat" -> "Latein"
-        "Mat" -> "Mathematik"
-        "Ges" -> "Geschichte"
-        "Pol" -> "Politik/Wirtschaft"
-        "Erd" -> "Erdkunde"
-        "Bio" -> "Biologie"
-        "Che" -> "Chemie"
-        "Phy" -> "Physik"
-        "Kun" -> "Kunst"
-        "Mus" -> "Musik"
-        "Spo" -> "Sport"
-        "Swi" -> "Schwimmen"
-        "Ver" -> "Klassenlehrerstunde"
-        "Aufg" -> "Vertretungsaufgaben"
-        // Randomly made up subjects:
-        "Vertr" -> "Vertretung"
-        else -> this
+        if (flags and FLAG_POSSIBLY_EMPTY == FLAG_POSSIBLY_EMPTY) {
+            formatted = formatted
+                    .replace(Regex("(---)-*"), "")  // Remove strike-through
+                    .replace("\u00A0", "")          // Remove NO-BREAK-SPACE
+        }
+
+        return formatted
     }
-
-    private fun String.extractCourseName() = this
-            .replace(Regex("\\?.+$"), "")
 }
