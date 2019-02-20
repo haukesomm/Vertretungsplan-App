@@ -165,27 +165,29 @@ class PlanActivity : AppCompatActivity() {
     }
 
 
-    private fun handleFragmentTransition(id: Int) {
+    private fun handleFragmentTransition(id: Int, animate: Boolean) {
         val fragment = when (id) {
             R.id.menu_activity_plan_entries -> PlanEntriesFragment()
             R.id.menu_activity_plan_messages -> PlanMessagesFragment()
             else -> PlanEntriesFragment()
         }
 
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.activity_plan_fragmentHolder, fragment)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .commit()
+        val transaction = supportFragmentManager
+                .beginTransaction().replace(R.id.activity_plan_fragmentHolder, fragment)
+        if (animate) {
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+        }
+        transaction.commit()
 
         fragmentHolder = fragment
     }
 
     private fun initBottomNavigation() {
         // Fragment to show on startup:
-        handleFragmentTransition(R.id.menu_activity_plan_entries)
+        handleFragmentTransition(R.id.menu_activity_plan_entries, false)
 
         bottomNavigation.setOnNavigationItemSelectedListener {
-            handleFragmentTransition(it.itemId)
+            handleFragmentTransition(it.itemId, true)
             hideMessagesBadge()
             true
         }
