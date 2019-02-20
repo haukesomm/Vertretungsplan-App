@@ -28,40 +28,13 @@
     <include
         layout="@layout/toolbar"/>
 
-    <RelativeLayout
+    <de.haukesomm.vertretungsplan.ui.InfoBannerView
         android:id="@+id/activity_reminder_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/margin_large"
-        android:layout_below="@id/toolbar"
-        android:background="@color/colorAccentLight">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_default"
-            android:src="@drawable/ic_info"
-            android:tint="@color/colorAccent"/>
-
-        <TextView
-            android:id="@+id/activity_reminder_hint_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/indent_list_text"
-            style="@style/Subheader"
-            android:textColor="@color/colorAccent"
-            android:text="@string/activity_reminder_hint_title"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/indent_list_text"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:layout_below="@id/activity_reminder_hint_title"
-            android:textColor="@color/colorAccent"
-            android:text="@string/activity_reminder_hint_text"/>
-
-    </RelativeLayout>
+        app:title="@string/activity_reminder_hint_title"
+        app:explanation="@string/activity_reminder_hint_text"
+        android:layout_below="@id/toolbar"/>
 
     <TextView
         android:id="@+id/activity_reminder_rules_title"

@@ -26,4 +26,10 @@
 
     <declare-styleable name="VertretungsplanFontTextView"/>
 
+    <declare-styleable name="InfoBannerView">
+        <attr name="title" format="reference|string"/>
+        <attr name="explanation" format="reference|string"/>
+        <attr name="drawable" format="reference|integer"/>
+    </declare-styleable>
+
 </resources>

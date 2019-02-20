@@ -20,6 +20,7 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -27,37 +28,12 @@
     <include
         layout="@layout/toolbar"/>
 
-    <TextView
+    <de.haukesomm.vertretungsplan.ui.InfoBannerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Subheader"
-        android:text="@string/activity_reminder_create_grade"/>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccentLight">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_default"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_info"
-            android:tint="@color/colorAccent"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/indent_list_text"
-            android:layout_marginTop="@dimen/margin_default"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:layout_marginBottom="@dimen/margin_default"
-            style="@style/Text.Body1.Primary"
-            android:textColor="@color/colorAccent"
-            android:text="@string/activity_reminder_create_grade_info"/>
-
-    </RelativeLayout>
+        app:title="@string/activity_reminder_create_grade"
+        app:explanation="@string/activity_reminder_create_grade_info"
+        app:drawable="@drawable/ic_label"/>
 
     <Spinner
         android:id="@+id/activity_reminder_create_grades"
@@ -65,37 +41,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default"/>
 
-    <TextView
+    <de.haukesomm.vertretungsplan.ui.InfoBannerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Subheader"
-        android:text="@string/activity_reminder_create_time"/>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccentLight">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_default"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_info"
-            android:tint="@color/colorAccent"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/indent_list_text"
-            android:layout_marginTop="@dimen/margin_default"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:layout_marginBottom="@dimen/margin_default"
-            style="@style/Text.Body1.Primary"
-            android:textColor="@color/colorAccent"
-            android:text="@string/activity_reminder_create_time_info"/>
-
-    </RelativeLayout>
+        android:layout_marginTop="@dimen/margin_large"
+        app:title="@string/activity_reminder_create_time"
+        app:explanation="@string/activity_reminder_create_time_info"
+        app:drawable="@drawable/ic_time"/>
 
     <TimePicker
         android:id="@+id/activity_reminder_create_timepicker"
