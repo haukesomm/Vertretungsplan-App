@@ -28,12 +28,8 @@
 
     <!-- Splash Activity -->
 
-    <string name="activity_splash_quit">Beenden</string>
-    <string name="activity_splash_reload">Neu laden</string>
     <string name="activity_splash_eula_accept">Akzeptieren</string>
     <string name="activity_splash_eula_decline">Ablehnen</string>
-    <string name="activity_splash_offline_title">Der Vertretungsplan kann nicht geladen werden!</string>
-    <string name="activity_splash_offline_text">Entweder ist der Vertretungsplan zur Zeit nicht erreichbar oder Dein Gerät ist nicht mit dem Internet verbunden.</string>
 
 
     <!-- Main Activity and child Fragments -->
@@ -59,6 +55,14 @@
 
     <string name="adapter_planEntry_cancellation">Ausfall</string>
     <string name="adapter_planEntry_roomRormat">Raum %1$s</string>
+
+
+    <!-- Misc: PlanDownloaderErrorDialog -->
+
+    <string name="dialog_downloader_plan_error_title">Der Vertretungsplan kann nicht geladen werden!</string>
+    <string name="dialog_downloader_plan_error_text">Entweder ist der Vertretungsplan zur Zeit nicht erreichbar oder Dein Gerät ist nicht mit dem Internet verbunden.</string>
+    <string name="dialog_downloader_plan_error_cancel">Abbrechen</string>
+    <string name="dialog_downloader_plan_error_reload">Neu laden</string>
 
 
     <!-- Reminder Activity -->

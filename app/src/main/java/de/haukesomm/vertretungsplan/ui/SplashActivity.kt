@@ -33,10 +33,9 @@ import de.haukesomm.vertretungsplan.plan.Plan
 import de.haukesomm.vertretungsplan.helper.UpgradeHelper
 import de.haukesomm.vertretungsplan.R
 import de.haukesomm.vertretungsplan.helper.NotificationHelper
-import de.haukesomm.vertretungsplan.plan.PlanCache
 import de.haukesomm.vertretungsplan.plan.PlanDownloaderTask
 
-class SplashActivity : AppCompatActivity(), PlanDownloaderTask.Client {
+class SplashActivity : AppCompatActivity() {
 
     private lateinit var downloader: PlanDownloaderTask
 
@@ -66,7 +65,7 @@ class SplashActivity : AppCompatActivity(), PlanDownloaderTask.Client {
 
 
     private fun beginDownload() {
-        downloader = PlanDownloaderTask(this)
+        downloader = PlanDownloaderTask(downloaderClient)
         downloader.execute()
     }
 
@@ -74,42 +73,20 @@ class SplashActivity : AppCompatActivity(), PlanDownloaderTask.Client {
         downloader.cancel(true)
     }
 
-    override fun onDownloadFinished(result: List<Plan>) {
-        initPlanCache(result)
-        when {
-            !preferences.getBoolean(
-                    getString(R.string.pref_isEulaAccepted), false) -> displayEula()
-            else -> launchMainActivity()
-        }
-    }
+    private val downloaderClient = object : PlanCacheDownloaderClient(this) {
 
-    @Suppress("DEPRECATION")
-    override fun onDownloadFailed() {
-        val alertDialog = AlertDialog.Builder(this).create()
-        alertDialog.setTitle(getString(R.string.activity_splash_offline_title))
-        alertDialog.setMessage(Html.fromHtml(getString(R.string.activity_splash_offline_text)))
-        alertDialog.setCancelable(false)
-
-        alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.activity_splash_reload))
-        { dialog, _ ->
-            dialog.dismiss()
-            beginDownload()
+        override fun onDownloadFinished(result: List<Plan>) {
+            super.onDownloadFinished(result)
+            when {
+                !preferences.getBoolean(
+                        getString(R.string.pref_isEulaAccepted), false) -> displayEula()
+                else -> launchMainActivity()
+            }
         }
 
-        alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.activity_splash_quit))
-        { _, _ ->
-            finishAffinity()
-        }
+        override fun onReload() = beginDownload()
 
-        alertDialog.show()
-    }
-
-
-    private fun initPlanCache(plans: List<Plan>) {
-        PlanCache.reset()
-        for (p in plans) {
-            PlanCache.add(p)
-        }
+        override fun onCancel() = finishAffinity()
     }
 
 
