@@ -223,8 +223,13 @@ class PlanActivity : AppCompatActivity() {
         messagesItemView.addView(messagesBadge)
 
 
+        showMessageBadgeIfAvailable()
+    }
+
+    private fun showMessageBadgeIfAvailable() {
         // TODO Implement in respective Fragment
-        if (PlanCache.getAll().any { it.message.isNotBlank() }) {
+        if (PlanCache.getAll().any { it.message.isNotBlank() }
+                && !(fragmentHolder is PlanMessagesFragment)) {
             showMessagesBadge()
         }
     }
@@ -243,6 +248,7 @@ class PlanActivity : AppCompatActivity() {
 
             override fun onDownloadFinished(result: List<Plan>) {
                 super.onDownloadFinished(result)
+                showMessageBadgeIfAvailable()
                 Toast.makeText(applicationContext, R.string.activity_main_reload_successful,
                         Toast.LENGTH_LONG).show()
             }
