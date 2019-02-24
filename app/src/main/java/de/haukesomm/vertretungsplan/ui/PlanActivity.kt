@@ -43,7 +43,9 @@ import com.google.android.material.navigation.NavigationView
 import de.haukesomm.vertretungsplan.R
 import de.haukesomm.vertretungsplan.background.FetchServiceManager
 import de.haukesomm.vertretungsplan.helper.ActivityHelper
+import de.haukesomm.vertretungsplan.plan.Plan
 import de.haukesomm.vertretungsplan.plan.PlanCache
+import de.haukesomm.vertretungsplan.plan.PlanDownloaderTask
 
 
 private const val REQUEST_SETTINGS_ACTIVITY = 1000
@@ -104,7 +106,7 @@ class PlanActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             android.R.id.home -> drawerLayout.openDrawer(GravityCompat.START)
-            R.id.menu_activity_plan_reload -> {}
+            R.id.menu_activity_plan_reload -> reloadPlans()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -233,5 +235,21 @@ class PlanActivity : AppCompatActivity() {
 
     private fun hideMessagesBadge() {
         messagesBadge.visibility = View.INVISIBLE
+    }
+
+
+    private fun reloadPlans() {
+        val downloaderClient = object : PlanCacheDownloaderClient(this) {
+
+            override fun onDownloadFinished(result: List<Plan>) {
+                super.onDownloadFinished(result)
+                Toast.makeText(applicationContext, R.string.activity_main_reload_successful,
+                        Toast.LENGTH_LONG).show()
+            }
+
+            override fun onReload() = reloadPlans()
+        }
+
+        PlanDownloaderTask(downloaderClient).execute()
     }
 }

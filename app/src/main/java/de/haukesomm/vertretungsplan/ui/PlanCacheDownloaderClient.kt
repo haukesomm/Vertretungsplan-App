@@ -64,5 +64,5 @@ abstract class PlanCacheDownloaderClient(private val context: Context) : PlanDow
 
     abstract fun onReload()
 
-    abstract fun onCancel()
+    open fun onCancel() {}
 }
