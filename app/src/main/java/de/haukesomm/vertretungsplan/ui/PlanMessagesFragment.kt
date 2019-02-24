@@ -39,13 +39,13 @@ class PlanMessagesFragment : Fragment(), PlanCache.Observer {
         val view = inflater.inflate(R.layout.fragment_messages_plan, container, false)
         initMessageList(view)
 
-        PlanCache.register(this)
+        PlanCache.subscribe(this)
 
         return view
     }
 
     override fun onDestroy() {
-        PlanCache.unregister(this)
+        PlanCache.unsubscribe(this)
         super.onDestroy()
     }
 

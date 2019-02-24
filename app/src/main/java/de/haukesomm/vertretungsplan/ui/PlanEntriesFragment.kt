@@ -96,13 +96,13 @@ class PlanEntriesFragment : Fragment(), PlanCache.Observer {
         initCourseFilter(view)
         initOutput(view)
 
-        PlanCache.register(this)
+        PlanCache.subscribe(this)
 
         return view
     }
 
     override fun onDestroy() {
-        PlanCache.unregister(this)
+        PlanCache.unsubscribe(this)
         super.onDestroy()
     }
 

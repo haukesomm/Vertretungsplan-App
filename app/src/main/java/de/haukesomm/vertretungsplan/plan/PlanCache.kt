@@ -59,10 +59,10 @@ internal object PlanCache {
 
     private fun notifyObservers() = observers.forEach { it.onPlanCacheUpdate() }
 
-    fun register(observer: Observer) = observers.add(observer)
+    fun subscribe(observer: Observer) = observers.add(observer)
 
     // Leaks may occur if not called!
-    fun unregister(observer: Observer) = observers.remove(observer)
+    fun unsubscribe(observer: Observer) = observers.remove(observer)
 
     interface Observer {
 
