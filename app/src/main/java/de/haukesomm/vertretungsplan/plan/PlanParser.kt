@@ -124,7 +124,7 @@ class PlanParser {
             }
             /*
              * Second case: Tag is an inline header.
-             * Create a map entry for the Grade of the inline-header and assign an empty List to it.
+             * Create a map entry for the Grade of the inline-header and assign an isEmpty List to it.
              * The List is then used to store the respective PlanEntries.
              */
             else if (first.hasClass(HTML_ENTRIES_SUBHEADER_CLASS)) {

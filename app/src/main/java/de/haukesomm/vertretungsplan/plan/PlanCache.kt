@@ -19,33 +19,27 @@
 
 package de.haukesomm.vertretungsplan.plan
 
-internal object PlanCache {
+object PlanCache {
 
-    private val plans = LinkedHashMap<Int, Plan>()
+    private val plans = mutableMapOf<Int, Plan>()
 
-    private var nextId = 0
+    private var availableID = 0
 
 
-    val empty
+    val isEmpty
         get() = plans.isEmpty()
 
 
     fun add(plan: Plan): Int {
-        val id = nextId++
+        val id = availableID++
         plans[id] = plan
-
         notifyObservers()
-
         return id
     }
 
-    fun get(id: Int) = plans[id]
-
     fun getAll(): List<Plan> {
-        val list = ArrayList<Plan>()
-        for (key in plans.keys) {
-            list += plans[key]!!
-        }
+        val list = mutableListOf<Plan>()
+        plans.keys.forEach { key -> list += plans[key]!! }
         return list
     }
 

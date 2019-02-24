@@ -72,10 +72,10 @@ class PlanActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_plan)
 
-        // Force-stop onCreate() and launch SplashActivity instead if PlanCache is empty
+        // Force-stop onCreate() and launch SplashActivity instead if PlanCache is isEmpty
         // (e.g. object has been destroyed due to application pause)
-        if (PlanCache.empty) {
-            Log.d("PlanActivity", "PlanCache is empty, reloading via SplashActivity")
+        if (PlanCache.isEmpty) {
+            Log.d("PlanActivity", "PlanCache is isEmpty, reloading via SplashActivity")
             activityHelper.launch(SplashActivity::class.java)
             finish()
             return
