@@ -33,6 +33,9 @@ internal object PlanCache {
     fun add(plan: Plan): Int {
         val id = nextId++
         plans[id] = plan
+
+        notifyObservers()
+
         return id
     }
 
@@ -46,5 +49,23 @@ internal object PlanCache {
         return list
     }
 
-    fun reset() = plans.clear()
+    fun reset() {
+        plans.clear()
+        notifyObservers()
+    }
+
+
+    private val observers = mutableListOf<Observer>()
+
+    private fun notifyObservers() = observers.forEach { it.onPlanCacheUpdate() }
+
+    fun register(observer: Observer) = observers.add(observer)
+
+    // Leaks may occur if not called!
+    fun unregister(observer: Observer) = observers.remove(observer)
+
+    interface Observer {
+
+        fun onPlanCacheUpdate()
+    }
 }
