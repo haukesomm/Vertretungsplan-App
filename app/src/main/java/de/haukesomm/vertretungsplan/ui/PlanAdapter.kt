@@ -29,7 +29,7 @@ import de.haukesomm.vertretungsplan.plan.Plan
 import de.haukesomm.vertretungsplan.R
 
 class PlanAdapter(context: Context,
-                  private val plans: List<Plan>) : BaseAdapter() {
+                  private var plans: List<Plan>) : BaseAdapter() {
 
     private val inflater = LayoutInflater.from(context)
 
@@ -39,6 +39,9 @@ class PlanAdapter(context: Context,
     override fun getItem(position: Int) = plans[position]
 
     override fun getItemId(position: Int) = 0L
+
+
+    fun setItems(items: List<Plan>) { plans = items }
 
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {

@@ -37,13 +37,12 @@ import de.haukesomm.vertretungsplan.R
 import de.haukesomm.vertretungsplan.plan.PlanCache
 import java.util.*
 
-class PlanEntriesFragment : Fragment() {
+class PlanEntriesFragment : Fragment(), PlanCache.Observer {
 
     private lateinit var preferences: SharedPreferences
 
 
-
-    private val plans = PlanCache.getAll()
+    private var plans = PlanCache.getAll()
 
     private val grades = Grade.defaults
 
@@ -51,6 +50,10 @@ class PlanEntriesFragment : Fragment() {
     private lateinit var spinnerPlans: Spinner
 
     private lateinit var spinnerGrades: Spinner
+
+    private lateinit var spinnerPlansAdapter: PlanAdapter
+
+    private lateinit var spinnerGradesAdapter: GradeAdapter
 
     private var rememberGrade = false
 
@@ -82,7 +85,6 @@ class PlanEntriesFragment : Fragment() {
                 .filter { !courseFilterEnabled || allowedCourses.contains(it.course) }
 
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -94,8 +96,18 @@ class PlanEntriesFragment : Fragment() {
         initCourseFilter(view)
         initOutput(view)
 
+        PlanCache.register(this)
+
         return view
     }
+
+    override fun onDestroy() {
+        PlanCache.unregister(this)
+        super.onDestroy()
+    }
+
+
+    override fun onPlanCacheUpdate() = updatePlans()
 
 
     /* #############################################################################################
@@ -109,8 +121,10 @@ class PlanEntriesFragment : Fragment() {
         spinnerPlans = view.findViewById(R.id.fragment_entries_plan_spinnerPlans)
         spinnerGrades = view.findViewById(R.id.fragment_entries_plan_spinnerGrades)
 
-        spinnerPlans.adapter = PlanAdapter(context!!, plans)
-        spinnerGrades.adapter = GradeAdapter(context!!, grades)
+        spinnerPlansAdapter = PlanAdapter(context!!, plans)
+        spinnerPlans.adapter = spinnerPlansAdapter
+        spinnerGradesAdapter = GradeAdapter(context!!, grades)
+        spinnerGrades.adapter = spinnerGradesAdapter
 
         spinnerPlans.onItemSelectedListener = spinnerListener
         spinnerGrades.onItemSelectedListener = spinnerListener
@@ -138,6 +152,12 @@ class PlanEntriesFragment : Fragment() {
             val grade = Grade(gradeString!!)
             spinnerGrades.setSelection(grades.indexOf(grade))
         }
+    }
+
+    private fun updatePlans() {
+        plans = PlanCache.getAll()
+        spinnerPlansAdapter.setItems(plans)
+        spinnerPlansAdapter.notifyDataSetChanged()
     }
 
     private val spinnerListener = object : AdapterView.OnItemSelectedListener {

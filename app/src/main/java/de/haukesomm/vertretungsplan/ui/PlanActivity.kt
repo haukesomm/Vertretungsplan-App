@@ -26,6 +26,7 @@ import android.preference.PreferenceManager
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Switch
@@ -82,7 +83,7 @@ class PlanActivity : AppCompatActivity() {
 
         initToolbar()
         initDrawer()
-        initBottomNavigation()
+        initFragments()
         initMessagesBadge()
     }
 
@@ -95,9 +96,15 @@ class PlanActivity : AppCompatActivity() {
     }
 
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.activity_plan_top, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             android.R.id.home -> drawerLayout.openDrawer(GravityCompat.START)
+            R.id.menu_activity_plan_reload -> {}
         }
         return super.onOptionsItemSelected(item)
     }
@@ -166,7 +173,7 @@ class PlanActivity : AppCompatActivity() {
 
 
     private fun handleFragmentTransition(id: Int, animate: Boolean) {
-        val fragment = when (id) {
+        val fragment: Fragment = when (id) {
             R.id.menu_activity_plan_entries -> PlanEntriesFragment()
             R.id.menu_activity_plan_messages -> PlanMessagesFragment()
             else -> PlanEntriesFragment()
@@ -182,7 +189,7 @@ class PlanActivity : AppCompatActivity() {
         fragmentHolder = fragment
     }
 
-    private fun initBottomNavigation() {
+    private fun initFragments() {
         // Fragment to show on startup:
         handleFragmentTransition(R.id.menu_activity_plan_entries, false)
 
@@ -214,6 +221,7 @@ class PlanActivity : AppCompatActivity() {
         messagesItemView.addView(messagesBadge)
 
 
+        // TODO Implement in respective Fragment
         if (PlanCache.getAll().any { it.message.isNotBlank() }) {
             showMessagesBadge()
         }

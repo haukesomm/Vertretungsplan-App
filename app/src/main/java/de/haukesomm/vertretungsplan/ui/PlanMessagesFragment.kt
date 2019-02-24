@@ -28,15 +28,29 @@ import androidx.fragment.app.Fragment
 import de.haukesomm.vertretungsplan.R
 import de.haukesomm.vertretungsplan.plan.PlanCache
 
-class PlanMessagesFragment : Fragment() {
+class PlanMessagesFragment : Fragment(), PlanCache.Observer {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    private lateinit var messageAdapter: PlanMessageAdapter
+
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+
         val view = inflater.inflate(R.layout.fragment_messages_plan, container, false)
-
         initMessageList(view)
+
+        PlanCache.register(this)
 
         return view
     }
+
+    override fun onDestroy() {
+        PlanCache.unregister(this)
+        super.onDestroy()
+    }
+
+
+    private fun getPlansContainingMessages() = PlanCache.getAll().filter { it.message.isNotEmpty() }
 
 
     private fun initMessageList(view: View) {
@@ -45,8 +59,13 @@ class PlanMessagesFragment : Fragment() {
         val messageListEmptyView = view.findViewById<View>(R.id.fragment_messages_plan_output_empty)
         messageList.emptyView = messageListEmptyView
 
-        val messageListAdapter = PlanMessageAdapter(context!!,
-                PlanCache.getAll().filter { it.message.isNotEmpty() })
-        messageList.adapter = messageListAdapter
+        messageAdapter = PlanMessageAdapter(context!!, getPlansContainingMessages())
+        messageList.adapter = messageAdapter
+    }
+
+
+    override fun onPlanCacheUpdate() {
+        messageAdapter.setItems(getPlansContainingMessages())
+        messageAdapter.notifyDataSetChanged()
     }
 }
