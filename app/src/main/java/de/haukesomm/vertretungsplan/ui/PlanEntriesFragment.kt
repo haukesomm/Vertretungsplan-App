@@ -23,6 +23,7 @@ import android.content.DialogInterface
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -131,7 +132,7 @@ class PlanEntriesFragment : Fragment(), PlanCache.Observer {
 
 
         rememberGrade = preferences.getBoolean(getString(R.string.pref_isGradePersistenceEnabled),
-                false)
+                true)
         restorePersistedGradeIfPossible()
     }
 
