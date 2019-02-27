@@ -151,7 +151,10 @@ class PlanEntriesFragment : Fragment(), PlanCache.Observer {
                     getString(R.string.pref_persistedGradeName), Grade.defaults[0].name)
 
             val grade = Grade(gradeString!!)
-            spinnerGrades.setSelection(grades.indexOf(grade))
+            val index = grades.indexOf(grade)
+            // If the Grade no longer exists (index -1), the Spinner needs to be set to a valid
+            // position. This is 0 until a new, valid Grade is persisted.
+            spinnerGrades.setSelection(if (index != -1) index else 0)
         }
     }
 
