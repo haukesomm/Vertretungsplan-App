@@ -53,6 +53,20 @@
     </item>
 
     <item
+        android:title="@string/activity_main_drawer_other">
+
+        <menu>
+
+            <item
+                android:id="@+id/drawer_activity_homepage"
+                android:title="@string/activity_main_drawer_other_homepage"
+                android:icon="@drawable/ic_open_externally"/>
+
+        </menu>
+
+    </item>
+
+    <item
         android:title="@string/activity_main_drawer_support_title">
 
         <menu>

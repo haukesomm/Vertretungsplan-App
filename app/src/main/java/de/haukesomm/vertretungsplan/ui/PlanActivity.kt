@@ -132,9 +132,13 @@ class PlanActivity : AppCompatActivity() {
             R.id.drawer_activity_plan_preferences ->
                 activityHelper.launch(PreferenceActivity::class.java, REQUEST_SETTINGS_ACTIVITY)
             R.id.drawer_activity_plan_about -> activityHelper.launch(InfoActivity::class.java)
+            R.id.drawer_activity_homepage -> {
+                activityHelper.launch(
+                        Intent(Intent.ACTION_VIEW, Uri.parse("https://www.gym-nw.org")))
+            }
             R.id.drawer_activity_plan_rate -> {
-                val int = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName"))
-                activityHelper.launch(int)
+                activityHelper.launch(
+                        Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName")))
             }
         }
 

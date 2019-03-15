@@ -35,6 +35,8 @@
     <!-- Main Activity and child Fragments -->
 
     <string name="activity_main_drawer_general">Allgemein</string>
+    <string name="activity_main_drawer_other">Sonstiges</string>
+    <string name="activity_main_drawer_other_homepage">Schulhomepage</string>
     <string name="activity_main_drawer_support_title">Gefällt Dir meine Arbeit?</string>
     <string name="activity_main_drawer_support_feedback">Bewerte die App</string>
     <string name="activity_main_reload_successful">Daten wurden aktualisiert</string>
