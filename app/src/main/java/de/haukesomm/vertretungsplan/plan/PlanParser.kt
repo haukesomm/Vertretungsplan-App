@@ -157,22 +157,40 @@ class PlanParser {
         val room = elements[3]
         val comment = elements[4]
 
-        val entry = PlanEntry(
-                lessons.text(),
-                format(subject.text(), FLAG_SUBSTITUTION or FLAG_SUBJECT),
-                format(room.text(), FLAG_SUBSTITUTION or FLAG_POSSIBLY_EMPTY),
-                format(comment.text(), FLAG_POSSIBLY_EMPTY))
 
-        if (grade.type == Grade.Type.SENIOR) {
+        val formattedLessons = lessons.text()
+        val formattedSubject = format(subject.text(), FLAG_SUBSTITUTION or FLAG_SUBJECT)
+        val formattedRoom = format(room.text(), FLAG_SUBSTITUTION or FLAG_POSSIBLY_EMPTY)
+        val formattedComment = format(comment.text(), FLAG_POSSIBLY_EMPTY)
+
+        val entry = PlanEntry(formattedLessons, formattedSubject, formattedRoom, formattedComment)
+
+
+        // An entry contains course-specific information either if it's grade is of type SENIOR or
+        // the original subject (without any substitution information) ends with a number:
+
+        // "Subject without substitution": Subject string without it's substitution info at the end
+        // (e.g. "WuN2?Ver" => "WuN2")
+        val subjectWithoutSubstitution = subject.text().replace(Regex("\\?.+$"), "")
+        // If the above generated string ends with a number, it is a course regardless of the
+        // grade's type (DEFAULT or SENIOR).
+        val subjectIsCourse = subjectWithoutSubstitution.matches(Regex("^.*[0-9]$"))
+
+        if (grade.type == Grade.Type.SENIOR || subjectIsCourse) {
             // Extract course name by removing trailing substitution info ('?...')
-            entry.course = subject.text().replace(Regex("\\?.+$"), "")
+            entry.course = subjectWithoutSubstitution
         }
+
+
+        // An entry should be flagged as a cancellation if the HTML source of the subject is
+        // formatted as a strike through and is no substitution.
 
         if (subject.children().isNotEmpty()
                 && subject.children().first().tagName() == "s"
                 && !subject.text().contains("?")) {
             entry.cancellation = true
         }
+
 
         return entry
     }
