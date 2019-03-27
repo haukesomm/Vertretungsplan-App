@@ -28,6 +28,7 @@ import de.haukesomm.vertretungsplan.plan.Plan
 import de.haukesomm.vertretungsplan.plan.PlanCache
 import de.haukesomm.vertretungsplan.plan.PlanDownloaderTask
 
+// TODO Rewrite "Download failed" Dialog and downloader client functionality
 abstract class PlanCacheDownloaderClient(private val context: Context) : PlanDownloaderTask.Client {
 
     override fun onDownloadFinished(result: List<Plan>) {
