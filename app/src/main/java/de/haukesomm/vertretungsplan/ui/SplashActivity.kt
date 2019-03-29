@@ -29,13 +29,12 @@ import android.text.Html
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import de.haukesomm.vertretungsplan.plan.Plan
 import de.haukesomm.vertretungsplan.helper.UpgradeHelper
 import de.haukesomm.vertretungsplan.R
 import de.haukesomm.vertretungsplan.helper.NotificationHelper
-import de.haukesomm.vertretungsplan.plan.PlanDownloaderTask
+import de.haukesomm.vertretungsplan.plan.*
 
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : AppCompatActivity(), PlanDownloaderClient {
 
     private lateinit var downloader: PlanDownloaderTask
 
@@ -65,7 +64,7 @@ class SplashActivity : AppCompatActivity() {
 
 
     private fun beginDownload() {
-        downloader = PlanDownloaderTask(downloaderClient)
+        downloader = PlanDownloaderTask(this)
         downloader.execute()
     }
 
@@ -73,20 +72,29 @@ class SplashActivity : AppCompatActivity() {
         downloader.cancel(true)
     }
 
-    private val downloaderClient = object : PlanCacheDownloaderClient(this) {
+    override fun onPlanDownloadSucceeded(result: List<Plan>) {
+        PlanCache.reset(result)
 
-        override fun onDownloadFinished(result: List<Plan>) {
-            super.onDownloadFinished(result)
-            when {
-                !preferences.getBoolean(
-                        getString(R.string.pref_isEulaAccepted), false) -> displayEula()
-                else -> launchMainActivity()
-            }
+        val isEulaAccepted = preferences.getBoolean(getString(R.string.pref_isEulaAccepted), false)
+        when {
+            isEulaAccepted -> launchMainActivity()
+            else -> displayEula()
         }
+    }
 
-        override fun onReload() = beginDownload()
-
-        override fun onCancel() = finishAffinity()
+    override fun onPlanDownloadFailed() {
+        val dialog = PlanDownloaderHelper.getErrorDialogTemplate(this)
+        dialog.setButton(DialogInterface.BUTTON_POSITIVE,
+                getString(R.string.dialog_downloader_plan_error_reload)) { d, _ ->
+            d.dismiss()
+            beginDownload()
+        }
+        dialog.setButton(DialogInterface.BUTTON_NEGATIVE,
+                getString(R.string.dialog_downloader_plan_error_cancel)) { d, _ ->
+            d.dismiss()
+            finishAffinity()
+        }
+        dialog.show()
     }
 
 

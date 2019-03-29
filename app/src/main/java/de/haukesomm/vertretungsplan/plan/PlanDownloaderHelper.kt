@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,15 +19,16 @@
 
 package de.haukesomm.vertretungsplan.plan
 
-import android.os.AsyncTask
+import android.content.Context
+import androidx.appcompat.app.AlertDialog
+import de.haukesomm.vertretungsplan.R
 
-class PlanDownloaderTask(private val client: PlanDownloaderClient)
-    : AsyncTask<Unit, Unit, List<Plan>>() {
 
-    override fun doInBackground(vararg params: Unit?): List<Plan> = PlanDownloader().downloadAll()
+object PlanDownloaderHelper {
 
-    override fun onPostExecute(result: List<Plan>?) = when {
-        result.isNullOrEmpty() -> client.onPlanDownloadFailed()
-        else -> client.onPlanDownloadSucceeded(result)
-    }
+    fun getErrorDialogTemplate(context: Context) = AlertDialog.Builder(context)
+            .setTitle(context.getString(R.string.dialog_downloader_plan_error_title))
+            .setMessage(context.getString(R.string.dialog_downloader_plan_error_text))
+            .setCancelable(false)
+            .create()
 }

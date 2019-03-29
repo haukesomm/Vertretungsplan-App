@@ -19,6 +19,7 @@
 
 package de.haukesomm.vertretungsplan.ui
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -43,15 +44,13 @@ import com.google.android.material.navigation.NavigationView
 import de.haukesomm.vertretungsplan.R
 import de.haukesomm.vertretungsplan.background.FetchServiceManager
 import de.haukesomm.vertretungsplan.helper.ActivityHelper
-import de.haukesomm.vertretungsplan.plan.Plan
-import de.haukesomm.vertretungsplan.plan.PlanCache
-import de.haukesomm.vertretungsplan.plan.PlanDownloaderTask
+import de.haukesomm.vertretungsplan.plan.*
 
 
 private const val REQUEST_SETTINGS_ACTIVITY = 1000
 
 
-class PlanActivity : AppCompatActivity() {
+class PlanActivity : AppCompatActivity(), PlanDownloaderClient {
 
     private val activityHelper by lazy { ActivityHelper(this) }
 
@@ -233,7 +232,7 @@ class PlanActivity : AppCompatActivity() {
     private fun showMessageBadgeIfAvailable() {
         // TODO Implement in respective Fragment
         if (PlanCache.getAll().any { it.message.isNotBlank() }
-                && !(fragmentHolder is PlanMessagesFragment)) {
+                && fragmentHolder !is PlanMessagesFragment) {
             showMessagesBadge()
         }
     }
@@ -247,19 +246,26 @@ class PlanActivity : AppCompatActivity() {
     }
 
 
-    private fun reloadPlans() {
-        val downloaderClient = object : PlanCacheDownloaderClient(this) {
+    private fun reloadPlans() = PlanDownloaderTask(this).execute()
 
-            override fun onDownloadFinished(result: List<Plan>) {
-                super.onDownloadFinished(result)
-                showMessageBadgeIfAvailable()
-                Toast.makeText(applicationContext, R.string.activity_main_reload_successful,
-                        Toast.LENGTH_LONG).show()
-            }
+    override fun onPlanDownloadSucceeded(result: List<Plan>) {
+        PlanCache.reset(result)
+        showMessageBadgeIfAvailable()
+        Toast.makeText(applicationContext, R.string.activity_main_reload_successful,
+                Toast.LENGTH_LONG).show()
+    }
 
-            override fun onReload() = reloadPlans()
+    override fun onPlanDownloadFailed() {
+        val dialog = PlanDownloaderHelper.getErrorDialogTemplate(this)
+        dialog.setButton(DialogInterface.BUTTON_POSITIVE,
+                getString(R.string.dialog_downloader_plan_error_reload)) { d, _ ->
+            d.dismiss()
+            reloadPlans()
         }
-
-        PlanDownloaderTask(downloaderClient).execute()
+        dialog.setButton(DialogInterface.BUTTON_NEGATIVE,
+                getString(R.string.dialog_downloader_plan_error_cancel)) { d, _ ->
+            d.dismiss()
+        }
+        dialog.show()
     }
 }
