@@ -33,6 +33,6 @@ class PlanDownloaderTask(private val client: Client) : AsyncTask<Unit, Unit, Lis
 
     override fun onPostExecute(result: List<Plan>?) = when {
         result.isNullOrEmpty() -> client.onDownloadFailed()
-        else -> client.onDownloadFinished(result!!)
+        else -> client.onDownloadFinished(result)
     }
 }
