@@ -30,11 +30,14 @@ object PlanCache {
         get() = plans.isEmpty()
 
 
-    fun add(plan: Plan): Int {
-        val id = availableID++
-        plans[id] = plan
-        notifyObservers()
-        return id
+    fun add(plan: Plan, notify: Boolean = true) {
+        plans[availableID++] = plan
+        if (notify) notifyObservers()
+    }
+
+    fun addAll(plans: List<Plan>, notify: Boolean = true) {
+        plans.forEach { add(it, false) }
+        if (notify) notifyObservers()
     }
 
     fun getAll(): List<Plan> {
@@ -43,15 +46,21 @@ object PlanCache {
         return list
     }
 
-    fun reset() {
+    fun reset(notify: Boolean = true) {
         plans.clear()
+        if (notify) notifyObservers()
+    }
+
+    fun reset(plans: List<Plan>) {
+        reset(false)
+        addAll(plans, false)
         notifyObservers()
     }
 
 
     private val observers = mutableListOf<Observer>()
 
-    private fun notifyObservers() = observers.forEach { it.onPlanCacheUpdate() }
+    fun notifyObservers() = observers.forEach { it.onPlanCacheUpdate() }
 
     fun subscribe(observer: Observer) = observers.add(observer)
 
