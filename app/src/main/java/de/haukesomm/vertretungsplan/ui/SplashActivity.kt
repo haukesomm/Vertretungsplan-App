@@ -22,6 +22,7 @@ package de.haukesomm.vertretungsplan.ui
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -31,6 +32,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import de.haukesomm.vertretungsplan.helper.UpgradeHelper
 import de.haukesomm.vertretungsplan.R
+import de.haukesomm.vertretungsplan.helper.ActivityHelper
 import de.haukesomm.vertretungsplan.helper.NotificationHelper
 import de.haukesomm.vertretungsplan.plan.*
 
@@ -94,6 +96,13 @@ class SplashActivity : AppCompatActivity(), PlanDownloaderClient {
             d.dismiss()
             finishAffinity()
         }
+        dialog.setButton(DialogInterface.BUTTON_NEUTRAL,
+                getString(R.string.dialog_downloader_plan_error_website)) { d, _ ->
+            d.dismiss()
+            // TODO Homepage URI kommt doppelt in PlanActivity vor - vereinheitlichen?
+            ActivityHelper(this).launch(
+                    Intent(Intent.ACTION_VIEW, Uri.parse("https://www.gym-nw.org")))
+        }
         dialog.show()
     }
 
@@ -105,8 +114,7 @@ class SplashActivity : AppCompatActivity(), PlanDownloaderClient {
         alertDialog.setCancelable(false)
 
         alertDialog.setButton(DialogInterface.BUTTON_POSITIVE,
-                getString(R.string.activity_splash_eula_accept))
-        { dialog, _ ->
+                getString(R.string.activity_splash_eula_accept)) { dialog, _ ->
             val editor = preferences.edit()
             editor.putBoolean(getString(R.string.pref_isEulaAccepted), true)
             editor.apply()
@@ -116,8 +124,8 @@ class SplashActivity : AppCompatActivity(), PlanDownloaderClient {
             launchMainActivity()
         }
 
-        alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.activity_splash_eula_decline))
-        { _, _ ->
+        alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE,
+                getString(R.string.activity_splash_eula_decline)) { _, _ ->
             finishAffinity()
         }
 

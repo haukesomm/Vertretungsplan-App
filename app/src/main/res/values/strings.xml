@@ -60,12 +60,13 @@
     <string name="adapter_planEntry_roomRormat">Raum %1$s</string>
 
 
-    <!-- Misc: PlanDownloaderErrorDialog -->
+    <!-- Misc: PlanDownloader Error Dialog -->
 
     <string name="dialog_downloader_plan_error_title">Der Vertretungsplan kann nicht geladen werden!</string>
     <string name="dialog_downloader_plan_error_text">Entweder ist der Vertretungsplan zur Zeit nicht erreichbar oder Dein Gerät ist nicht mit dem Internet verbunden.</string>
     <string name="dialog_downloader_plan_error_cancel">Abbrechen</string>
     <string name="dialog_downloader_plan_error_reload">Neu laden</string>
+    <string name="dialog_downloader_plan_error_website">Schulhomepage</string>
 
 
     <!-- Reminder Activity -->
