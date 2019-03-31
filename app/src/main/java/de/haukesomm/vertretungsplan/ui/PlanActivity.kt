@@ -62,7 +62,12 @@ class PlanActivity : AppCompatActivity(), PlanDownloaderClient {
     private val navigationView by lazy { findViewById<NavigationView>(R.id.activity_plan_navigationView) }
 
 
-    private lateinit var fragmentHolder: Fragment
+    private lateinit var activeFragment: Fragment
+
+    private val planEntriesFragment by lazy { PlanEntriesFragment() }
+
+    private val planMessagesFragment by lazy { PlanMessagesFragment() }
+
 
     private val bottomNavigation by lazy { findViewById<BottomNavigationView>(R.id.activity_plan_bottomNavigation) }
 
@@ -112,8 +117,8 @@ class PlanActivity : AppCompatActivity(), PlanDownloaderClient {
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_SETTINGS_ACTIVITY && fragmentHolder is PlanEntriesFragment) {
-            (fragmentHolder as PlanEntriesFragment).triggerCourseFilterUpdate()
+        if (requestCode == REQUEST_SETTINGS_ACTIVITY && activeFragment is PlanEntriesFragment) {
+            (activeFragment as PlanEntriesFragment).triggerCourseFilterUpdate()
         }
     }
 
@@ -179,9 +184,9 @@ class PlanActivity : AppCompatActivity(), PlanDownloaderClient {
 
     private fun handleFragmentTransition(id: Int, animate: Boolean) {
         val fragment: Fragment = when (id) {
-            R.id.menu_activity_plan_entries -> PlanEntriesFragment()
-            R.id.menu_activity_plan_messages -> PlanMessagesFragment()
-            else -> PlanEntriesFragment()
+            R.id.menu_activity_plan_entries -> planEntriesFragment
+            R.id.menu_activity_plan_messages -> planMessagesFragment
+            else -> return
         }
 
         val transaction = supportFragmentManager
@@ -191,7 +196,7 @@ class PlanActivity : AppCompatActivity(), PlanDownloaderClient {
         }
         transaction.commit()
 
-        fragmentHolder = fragment
+        activeFragment = fragment
     }
 
     private fun initFragments() {
@@ -232,7 +237,7 @@ class PlanActivity : AppCompatActivity(), PlanDownloaderClient {
     private fun showMessageBadgeIfAvailable() {
         // TODO Implement in respective Fragment
         if (PlanCache.getAll().any { it.message.isNotBlank() }
-                && fragmentHolder !is PlanMessagesFragment) {
+                && activeFragment !is PlanMessagesFragment) {
             showMessagesBadge()
         }
     }
