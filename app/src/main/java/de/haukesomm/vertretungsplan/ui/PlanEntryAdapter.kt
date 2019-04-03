@@ -46,6 +46,10 @@ class PlanEntryAdapter(private val context: Context,
     override fun getItemId(position: Int) = 0L
 
 
+    // Right now, none of the items needs to be clickable
+    override fun isEnabled(position: Int) = false
+
+
     fun setEntries(ents: List<PlanEntry>) {
         entries = ents
     }
