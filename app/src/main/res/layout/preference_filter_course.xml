@@ -34,17 +34,16 @@
         android:layout_height="wrap_content"
         style="@style/Text.Body2.Primary"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Text.Body1.Secondary"
+        android:text="@string/fragment_preferences_senior_courses_empty"/>
+
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/preference_filter_course_chips"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_small"/>
-
-    <TextView
-        android:id="@+id/preference_filter_course_empty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/Text.Body1.Secondary"
-        android:text="@string/fragment_preferences_senior_courses_empty"/>
 
 </LinearLayout>

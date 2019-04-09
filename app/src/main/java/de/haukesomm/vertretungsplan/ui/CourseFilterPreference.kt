@@ -43,8 +43,6 @@ class CourseFilterPreference(context: Context, attrs: AttributeSet) : Preference
 
     private lateinit var chips: ChipGroup
 
-    private lateinit var empty: TextView
-
     private lateinit var courses: MutableList<String>
 
 
@@ -61,7 +59,6 @@ class CourseFilterPreference(context: Context, attrs: AttributeSet) : Preference
         preferenceTitle.text = title
 
         chips = holder.findViewById(R.id.preference_filter_course_chips) as ChipGroup
-        empty = holder.findViewById(R.id.preference_filter_course_empty) as TextView
         courses = getPersistedCourses()
 
         displayCourses(courses)
@@ -72,27 +69,20 @@ class CourseFilterPreference(context: Context, attrs: AttributeSet) : Preference
 
     private fun displayCourses(courses: List<String>) {
         chips.removeAllViews()
-        when {
-            courses.isNotEmpty() -> courses.forEach { addCourseChip(it) }
-            else -> setEmptyViewVisible(true)
+        if (courses.isEmpty()) {
+            chips.visibility = View.GONE
+        } else {
+            courses.forEach { course -> addCourseChip(course) }
+            chips.visibility = View.VISIBLE
         }
     }
 
     private fun addCourseChip(course: String) {
-        // Empty View must always be gone if a chip exists
-        setEmptyViewVisible(false)
-
         val chip = Chip(context)
         chip.text = course
         chip.isCloseIconVisible = true
         chip.setOnCloseIconClickListener(chipOnClickListener)
         chips.addView(chip)
-    }
-
-
-    private fun setEmptyViewVisible(visible: Boolean) {
-        empty.visibility = if (visible) View.VISIBLE else View.GONE
-        chips.visibility = if (visible) View.GONE else View.VISIBLE
     }
 
 
@@ -140,6 +130,8 @@ class CourseFilterPreference(context: Context, attrs: AttributeSet) : Preference
                 val courses = getPersistedCourses()
                 courses += course
                 persistCourses(courses)
+
+                displayCourses(courses)
             }
         }
         dialogBuilder.setNegativeButton(context.getString(R.string.fragment_preferences_senior_courses_add_cancel))
