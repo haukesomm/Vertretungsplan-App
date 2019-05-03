@@ -31,7 +31,7 @@ class VertretungsplanPreferenceFragment : PreferenceFragmentCompat() {
         addPreferencesFromResource(R.xml.preferences)
 
         // Notification settings preferences are added depending on the device's API level
-        val notifications = preferenceScreen.findPreference(
+        val notifications = preferenceScreen.findPreference<PreferenceGroup>(
                 getString(R.string.pref_category_notifications)) as PreferenceGroup
 
         addPreferencesFromResource(R.xml.preferences_notifications_customize, notifications)
