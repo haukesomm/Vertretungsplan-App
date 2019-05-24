@@ -23,19 +23,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- TODO Revert back to CheckBoxPreference once the color bug is fixed in Android X -->
-
-    <androidx.preference.SwitchPreference
+    <androidx.preference.CheckBoxPreference
         android:key="@string/pref_isNotificationLightEnabled"
         android:title="@string/fragment_preferences_notifications_light"
         android:defaultValue="true"/>
 
-    <androidx.preference.SwitchPreference
+    <androidx.preference.CheckBoxPreference
         android:key="@string/pref_isNotificationSoundEnabled"
         android:title="@string/fragment_preferences_notifications_sound"
         android:defaultValue="false"/>
 
-    <androidx.preference.SwitchPreference
+    <androidx.preference.CheckBoxPreference
         android:key="@string/pref_isNotificationVibrationEnabled"
         android:title="@string/fragment_preferences_notifications_vibrate"
         android:defaultValue="true"/>
