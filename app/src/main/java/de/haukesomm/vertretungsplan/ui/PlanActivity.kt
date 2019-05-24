@@ -117,6 +117,8 @@ class PlanActivity : AppCompatActivity(), PlanDownloaderClient {
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
         if (requestCode == REQUEST_SETTINGS_ACTIVITY && activeFragment is PlanEntriesFragment) {
             (activeFragment as PlanEntriesFragment).triggerCourseFilterUpdate()
         }
@@ -235,7 +237,6 @@ class PlanActivity : AppCompatActivity(), PlanDownloaderClient {
     }
 
     private fun showMessageBadgeIfAvailable() {
-        // TODO Implement in respective Fragment
         if (PlanCache.getAll().any { it.message.isNotBlank() }
                 && activeFragment !is PlanMessagesFragment) {
             showMessagesBadge()
