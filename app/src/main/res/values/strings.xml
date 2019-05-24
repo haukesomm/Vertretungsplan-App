@@ -136,7 +136,6 @@
 
     <!-- Notification Channels -->
 
-    <string name="notifications_title">Benachrichtigungen</string>
     <string name="notifications_channel_plan_title">Ausfall und Änderungen</string>
     <string name="notifications_channel_sync_description">Dieser Notification-Channel sollte nicht verändert werden.</string>
     <string name="notifications_channel_sync_title">Synchronisierung</string>
