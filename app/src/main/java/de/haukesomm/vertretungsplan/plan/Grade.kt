@@ -40,26 +40,26 @@ data class Grade(val name: String, val type: Type) {
         @Suppress("MemberVisibilityCanBePrivate")
         val defaults = listOf(
                 // Mittelstufe:
-                Grade("5/1", Grade.Type.DEFAULT),   Grade("5/2", Grade.Type.DEFAULT),
-                Grade("5/3", Grade.Type.DEFAULT),   Grade("5/4", Grade.Type.DEFAULT),
-                Grade("5/5", Grade.Type.DEFAULT),   Grade("6/1", Grade.Type.DEFAULT),
-                Grade("6/2", Grade.Type.DEFAULT),   Grade("6/3", Grade.Type.DEFAULT),
-                Grade("6/4", Grade.Type.DEFAULT),   Grade("6/5", Grade.Type.DEFAULT),
-                Grade("7/1", Grade.Type.DEFAULT),   Grade("7/2", Grade.Type.DEFAULT),
-                Grade("7/3", Grade.Type.DEFAULT),   Grade("7/4", Grade.Type.DEFAULT),
-                Grade("7/5", Grade.Type.DEFAULT),   Grade("8/1", Grade.Type.DEFAULT),
-                Grade("8/2", Grade.Type.DEFAULT),   Grade("8/3", Grade.Type.DEFAULT),
-                Grade("8/4", Grade.Type.DEFAULT),   Grade("8/5", Grade.Type.DEFAULT),
-                Grade("9/1", Grade.Type.DEFAULT),   Grade("9/2", Grade.Type.DEFAULT),
-                Grade("9/3", Grade.Type.DEFAULT),   Grade("9/4", Grade.Type.DEFAULT),
-                Grade("9/5", Grade.Type.DEFAULT),   Grade("10/1", Grade.Type.DEFAULT),
-                Grade("10/2", Grade.Type.DEFAULT),  Grade("10/3", Grade.Type.DEFAULT),
-                Grade("10/4", Grade.Type.DEFAULT),  Grade("10/5", Grade.Type.DEFAULT),
-                Grade("11/1", Grade.Type.DEFAULT),  Grade("11/2", Grade.Type.DEFAULT),
-                Grade("11/3", Grade.Type.DEFAULT),  Grade("11/4", Grade.Type.DEFAULT),
-                Grade("11/5", Grade.Type.DEFAULT),
+                Grade("5/1", Type.DEFAULT),   Grade("5/2", Type.DEFAULT),
+                Grade("5/3", Type.DEFAULT),   Grade("5/4", Type.DEFAULT),
+                Grade("5/5", Type.DEFAULT),   Grade("6/1", Type.DEFAULT),
+                Grade("6/2", Type.DEFAULT),   Grade("6/3", Type.DEFAULT),
+                Grade("6/4", Type.DEFAULT),   Grade("6/5", Type.DEFAULT),
+                Grade("7/1", Type.DEFAULT),   Grade("7/2", Type.DEFAULT),
+                Grade("7/3", Type.DEFAULT),   Grade("7/4", Type.DEFAULT),
+                Grade("7/5", Type.DEFAULT),   Grade("8/1", Type.DEFAULT),
+                Grade("8/2", Type.DEFAULT),   Grade("8/3", Type.DEFAULT),
+                Grade("8/4", Type.DEFAULT),   Grade("8/5", Type.DEFAULT),
+                Grade("9/1", Type.DEFAULT),   Grade("9/2", Type.DEFAULT),
+                Grade("9/3", Type.DEFAULT),   Grade("9/4", Type.DEFAULT),
+                Grade("9/5", Type.DEFAULT),   Grade("10/1", Type.DEFAULT),
+                Grade("10/2", Type.DEFAULT),  Grade("10/3", Type.DEFAULT),
+                Grade("10/4", Type.DEFAULT),  Grade("10/5", Type.DEFAULT),
+                Grade("11/1", Type.DEFAULT),  Grade("11/2", Type.DEFAULT),
+                Grade("11/3", Type.DEFAULT),  Grade("11/4", Type.DEFAULT),
+                Grade("11/5", Type.DEFAULT),
                 // Oberstufe:
-                Grade("12", Grade.Type.SENIOR),     Grade("13", Grade.Type.SENIOR)
+                Grade("12", Type.SENIOR),     Grade("13", Type.SENIOR)
         )
     }
 }
