@@ -99,9 +99,7 @@ class SplashActivity : AppCompatActivity(), PlanDownloaderClient {
         dialog.setButton(DialogInterface.BUTTON_NEUTRAL,
                 getString(R.string.dialog_downloader_plan_error_website)) { d, _ ->
             d.dismiss()
-            // TODO Homepage URI kommt doppelt in PlanActivity vor - vereinheitlichen?
-            ActivityHelper(this).launch(
-                    Intent(Intent.ACTION_VIEW, Uri.parse("https://www.gym-nw.org")))
+            ActivityHelper(this).launch(Intent(Intent.ACTION_VIEW, Uri.parse(Plan.homepage)))
         }
         dialog.show()
     }

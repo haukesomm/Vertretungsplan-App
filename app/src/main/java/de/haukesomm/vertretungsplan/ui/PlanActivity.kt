@@ -140,7 +140,7 @@ class PlanActivity : AppCompatActivity(), PlanDownloaderClient {
             R.id.drawer_activity_plan_about -> activityHelper.launch(InfoActivity::class.java)
             R.id.drawer_activity_homepage -> {
                 activityHelper.launch(
-                        Intent(Intent.ACTION_VIEW, Uri.parse("https://www.gym-nw.org")))
+                        Intent(Intent.ACTION_VIEW, Uri.parse(Plan.homepage)))
             }
             R.id.drawer_activity_plan_rate -> {
                 activityHelper.launch(
