@@ -39,6 +39,7 @@
     <string name="activity_main_drawer_other_homepage">Schulhomepage</string>
     <string name="activity_main_drawer_support_title">Gefällt Dir meine Arbeit?</string>
     <string name="activity_main_drawer_support_feedback">Bewerte die App</string>
+    <string name="activity_main_reload">Neu laden</string>
     <string name="activity_main_reload_successful">Daten wurden aktualisiert</string>
 
     <string name="fragment_entries_plan_title">Einträge</string>

@@ -23,7 +23,7 @@
 
     <item
         android:id="@+id/menu_activity_plan_reload"
-        android:title="Neu Laden"
+        android:title="@string/activity_main_reload"
         android:icon="@drawable/ic_reload_plan_toolbar"
         app:showAsAction="always"/>
 
