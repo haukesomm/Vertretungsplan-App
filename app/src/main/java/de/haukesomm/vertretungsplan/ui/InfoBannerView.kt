@@ -20,6 +20,7 @@
 package de.haukesomm.vertretungsplan.ui
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -35,15 +36,15 @@ class InfoBannerView : FrameLayout {
     private val iconView by lazy { findViewById<ImageView>(R.id.view_banner_info_icon) }
 
 
-    var title
+    private var title
         get() = titleView.text as String
         set(value) { titleView.text = value }
 
-    var explanation
+    private var explanation
         get() = explanationView.text as String
         set(value) { explanationView.text = value }
 
-    var drawable
+    private var drawable: Drawable
         get() = iconView.drawable
         set(value) = iconView.setImageDrawable(value)
 
