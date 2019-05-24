@@ -34,7 +34,6 @@
     <string name="pref_courseFilterCourses" translatable="false">courseFilterCourses</string>
 
     <!-- Notifications -->
-    <!-- TODO Let the user choose which days should be muted -->
     <string name="pref_isSilenceOnWeekendEnabled" translatable="false">isSilenceOnWeekendEnabled</string>
     <string name="pref_isSilentModeEnabled" translatable="false">isSilentModeEnabled</string>
     <string name="pref_isNotificationLightEnabled" translatable="false">isNotificationLightEnabled</string>

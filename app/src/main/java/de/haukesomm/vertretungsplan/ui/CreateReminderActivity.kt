@@ -34,7 +34,6 @@ import de.haukesomm.vertretungsplan.background.FetchServiceManager
 import de.haukesomm.vertretungsplan.helper.TimeHelper
 import de.haukesomm.vertretungsplan.plan.Grade
 
-// TODO Allow editing reminders (additional db-methods needed)
 class CreateReminderActivity : AppCompatActivity() {
 
     companion object {

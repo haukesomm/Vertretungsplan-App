@@ -66,7 +66,6 @@
                 android:layout_marginStart="@dimen/indent_list_text"
                 android:text="@string/activity_info_general"/>
 
-            <!-- TODO Als eigenen View implementieren -->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_list_two"
@@ -126,7 +125,6 @@
                 android:layout_marginStart="@dimen/indent_list_text"
                 android:text="@string/activity_info_dev"/>
 
-            <!-- TODO Als eigenen View implementieren -->
             <RelativeLayout
                 android:id="@+id/activity_info_playStore"
                 android:layout_width="match_parent"

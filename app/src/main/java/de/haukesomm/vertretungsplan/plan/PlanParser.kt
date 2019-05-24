@@ -205,7 +205,6 @@ class PlanParser {
         }
 
         if (flags and FLAG_SUBJECT == FLAG_SUBJECT) {
-            // TODO Implement json config
             formatted = when (formatted) {
                 "Deu" -> "Deutsch"
                 "Eng" -> "Englisch"
