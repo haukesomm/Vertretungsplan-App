@@ -48,11 +48,11 @@ private const val HTML_ENTRIES_ATTRIBUTE_CLASS = "list"
 
 // Flags used in the format(String, Int) method:
 
-private const val FLAG_SUBSTITUTION: Int = 0x00000001
-
-private const val FLAG_SUBJECT: Int = 0x00000002
-
-private const val FLAG_POSSIBLY_EMPTY: Int = 0x00000003
+private enum class Flag {
+    SUBSTITUTION,
+    SUBJECT,
+    POSSIBLY_EMPTY
+}
 
 
 class PlanParser {
@@ -159,9 +159,9 @@ class PlanParser {
 
 
         val formattedLessons = lessons.text()
-        val formattedSubject = format(subject.text(), FLAG_SUBSTITUTION or FLAG_SUBJECT)
-        val formattedRoom = format(room.text(), FLAG_SUBSTITUTION or FLAG_POSSIBLY_EMPTY)
-        val formattedComment = format(comment.text(), FLAG_POSSIBLY_EMPTY)
+        val formattedSubject = format(subject.text(), Flag.SUBSTITUTION, Flag.SUBJECT)
+        val formattedRoom = format(room.text(), Flag.SUBJECT, Flag.POSSIBLY_EMPTY)
+        val formattedComment = format(comment.text(), Flag.POSSIBLY_EMPTY)
 
         val entry = PlanEntry(formattedLessons, formattedSubject, formattedRoom, formattedComment)
 
@@ -196,15 +196,15 @@ class PlanParser {
     }
 
 
-    private fun format(string: String, flags: Int): String {
+    private fun format(string: String, vararg flags: Flag): String {
         var formatted = string
 
-        if (flags and FLAG_SUBSTITUTION == FLAG_SUBSTITUTION) {
+        if (Flag.SUBSTITUTION in flags) {
             // Remove substitution-prefix ('Eng?')
             formatted = formatted.replace(Regex("^.+\\?"), "")
         }
 
-        if (flags and FLAG_SUBJECT == FLAG_SUBJECT) {
+        if (Flag.SUBJECT in flags) {
             formatted = when (formatted) {
                 "Deu" -> "Deutsch"
                 "Eng" -> "Englisch"
@@ -229,7 +229,7 @@ class PlanParser {
             }
         }
 
-        if (flags and FLAG_POSSIBLY_EMPTY == FLAG_POSSIBLY_EMPTY) {
+        if (Flag.POSSIBLY_EMPTY in flags) {
             formatted = formatted
                     .replace(Regex("(---)-*"), "")  // Remove strike-through
                     .replace("\u00A0", "")          // Remove NO-BREAK-SPACE
