@@ -19,22 +19,16 @@
 
 package de.haukesomm.vertretungsplan.plan
 
+import de.haukesomm.vertretungsplan.helper.modifyOnce
+
 data class PlanEntry(val lessons: String,
                      val subject: String,
                      val room: String,
                      val comment: String) {
 
-    /*
-    +------------------------+
-    |                        |
-    |    Additional flags    |
-    |                        |
-    +------------------------+
-     */
-
     // Can be set if an entry contains a cancelled lesson
-    var cancellation = false
+    var cancellation by modifyOnce(false)
 
     // Can be set to provide a course name (senior specific)
-    var course = ""
+    var course by modifyOnce("")
 }
