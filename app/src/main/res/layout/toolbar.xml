@@ -25,5 +25,4 @@
     android:layout_height="wrap_content"
     android:minHeight="?attr/actionBarSize"
     android:theme="@style/GymNW.Toolbar"
-    android:background="@color/colorPrimary"
-    android:fitsSystemWindows="true"/>
+    android:background="@color/colorToolbar"/>

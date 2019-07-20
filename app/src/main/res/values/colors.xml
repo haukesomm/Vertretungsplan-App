@@ -25,6 +25,8 @@
     <color name="colorAccentLight">#9FA8DA</color>
     <color name="colorImportant">#F44336</color>
 
+    <color name="colorToolbar">@color/colorPrimary</color>
+    <color name="colorStatusBar">@color/colorPrimaryDark</color>
     <color name="colorDivider">#e0e0e0</color>
 
     <color name="colorToolbarTextPrimary">@android:color/white</color>

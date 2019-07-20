@@ -36,7 +36,7 @@
 
         <activity
             android:name=".ui.PlanActivity"
-            android:theme="@style/GymNW.TransparentStatusBar"
+            android:theme="@style/GymNW"
             android:screenOrientation="portrait">
 
             <intent-filter>

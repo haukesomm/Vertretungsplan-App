@@ -21,5 +21,7 @@
 <resources>
     <!-- This file contains only values that differ from the default color set when night mode is
      enabled. -->
+    <color name="colorToolbar">@android:color/transparent</color> <!-- Match Background color -->
+    <color name="colorStatusBar">@android:color/black</color>
     <color name="colorDivider">#333333</color>
 </resources>
