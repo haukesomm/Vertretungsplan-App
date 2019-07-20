@@ -39,7 +39,7 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:src="@drawable/ic_close"
-        android:tint="@color/colorPassive"/>
+        android:tint="?android:attr/textColorSecondary"/>
 
     <LinearLayout
         android:orientation="vertical"

@@ -45,6 +45,6 @@
 
     <style name="ListDrawableSecondary">
         <item name="android:layout_marginEnd">@dimen/margin_default</item>
-        <item name="android:tint">@color/colorPassive</item>
+        <item name="android:tint">?android:attr/textColorSecondary</item>
     </style>
 </resources>

@@ -23,7 +23,7 @@
 
         <activity
             android:name=".ui.SplashActivity"
-            android:theme="@style/GymNW.LightStatusBar"
+            android:theme="@style/GymNW.SplashScreen"
             android:screenOrientation="portrait"
             android:noHistory="true">
 

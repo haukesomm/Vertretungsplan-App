@@ -19,10 +19,7 @@
 -->
 
 <resources>
-    <!-- Overrides default GymNW theme to use light navigation bar -->
-    <style name="GymNW" parent="GymNW.Base">
-        <item name="android:windowLightNavigationBar">true</item>
-        <item name="android:navigationBarColor">?attr/colorSurface</item>
-        <item name="android:navigationBarDividerColor">@color/colorDivider</item>
-    </style>
+    <!-- This file contains only values that differ from the default color set when night mode is
+     enabled. -->
+    <color name="colorDivider">#333333</color>
 </resources>

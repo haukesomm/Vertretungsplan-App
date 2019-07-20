@@ -19,33 +19,10 @@
 -->
 
 <resources>
-    <!-- COLOR PALETTE OF THE THEME -->
-
-    <color name="colorPrimary">#ff9800</color>
-    <color name="colorPrimaryDark">#f57c00</color>
-    <color name="colorAccent">#3f51b5</color>
-    <color name="colorAccentLight">#9FA8DA</color>
-    <color name="colorPassive">#757575</color>
-
-    <color name="colorToolbarTextPrimary">@android:color/white</color>
-    <color name="colorToolbarTextSecondary">@android:color/white</color>
-    <color name="colorToolbarIcons">@android:color/white</color>
-
-    <color name="colorBackground">@android:color/white</color>
-    <color name="colorBackgroundDark">#DCDCDC</color>
-    <color name="colorDivider">@color/colorBackgroundDark</color>
-
-    <color name="colorImportant">#F44336</color>
-
-
-    <!-- ACTUAL STYLES OF THE THEME -->
-
-    <style name="GymNW.Base" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="GymNW.Base" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColor">@android:color/black</item>
-        <item name="android:colorBackground">@color/colorBackground</item>
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>
     </style>
 
@@ -57,7 +34,7 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
-    <style name="GymNW.LightStatusBar" parent="GymNW">
+    <style name="GymNW.SplashScreen" parent="GymNW">
         <!-- Fallback for devices not supporting light status bars -->
         <item name="android:windowTranslucentStatus">true</item>
     </style>

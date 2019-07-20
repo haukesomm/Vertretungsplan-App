@@ -19,5 +19,15 @@
 -->
 
 <resources>
-    <!-- All GymNW-theme related colors have been moved. -->
+    <color name="colorPrimary">#ff9800</color>
+    <color name="colorPrimaryDark">#f57c00</color>
+    <color name="colorAccent">#3f51b5</color>
+    <color name="colorAccentLight">#9FA8DA</color>
+    <color name="colorImportant">#F44336</color>
+
+    <color name="colorDivider">#e0e0e0</color>
+
+    <color name="colorToolbarTextPrimary">@android:color/white</color>
+    <color name="colorToolbarTextSecondary">@android:color/white</color>
+    <color name="colorToolbarIcons">@android:color/white</color>
 </resources>
