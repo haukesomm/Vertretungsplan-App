@@ -30,10 +30,6 @@
         <!-- Might be overridden on higher APIs -->
     </style>
 
-    <style name="GymNW.TransparentStatusBar" parent="GymNW">
-        <item name="android:statusBarColor">@android:color/transparent</item>
-    </style>
-
     <style name="GymNW.SplashScreen" parent="GymNW">
         <!-- Fallback for devices not supporting light status bars -->
         <item name="android:windowTranslucentStatus">true</item>
