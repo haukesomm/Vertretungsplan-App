@@ -19,19 +19,28 @@
 
 package de.haukesomm.vertretungsplan.ui
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.preference.PreferenceManager
 import de.haukesomm.vertretungsplan.R
+import de.haukesomm.vertretungsplan.helper.ThemeHelper
 
 class PreferenceActivity : AppCompatActivity() {
+
+    private val preferences by lazy { PreferenceManager.getDefaultSharedPreferences(this) }
+
+    private val themeHelper = ThemeHelper()
+
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_preferences)
 
         initToolbar()
+        registerPreferenceListener()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -49,5 +58,18 @@ class PreferenceActivity : AppCompatActivity() {
 
         supportActionBar?.title = getString(R.string.activity_preferences)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    private fun registerPreferenceListener() {
+        // A reference to the listener needs to be saved because the listener would be garbage-
+        // collected otherwise. This is because the internal implementation uses a WeakHashMap.
+        val preferenceListener = SharedPreferences.OnSharedPreferenceChangeListener { prefs: SharedPreferences, key: String ->
+            val darkModeKey = getString(R.string.pref_darkModeBehavior)
+            if (key == darkModeKey) {
+                val darkModeBehavior = prefs.getString(darkModeKey, "")!!
+                themeHelper.setDarkModeBehavior(darkModeBehavior)
+            }
+        }
+        preferences.registerOnSharedPreferenceChangeListener(preferenceListener)
     }
 }

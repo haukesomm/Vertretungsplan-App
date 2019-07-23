@@ -32,6 +32,14 @@
 
     <string name="pref_isCourseFilterEnabled" translatable="false">isCourseFilterEnabled</string>
     <string name="pref_courseFilterCourses" translatable="false">courseFilterCourses</string>
+    
+    <!-- UI -->
+    <string name="pref_darkModeBehavior" translatable="false">darkModeBehavior</string>
+    <string-array name="pref_darkModeBehavior_values">
+        <item>system</item>
+        <item>always</item>
+        <item>never</item>
+    </string-array>
 
     <!-- Notifications -->
     <string name="pref_isSilenceOnWeekendEnabled" translatable="false">isSilenceOnWeekendEnabled</string>

@@ -25,29 +25,32 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.text.Html
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.preference.PreferenceManager
 import de.haukesomm.vertretungsplan.helper.UpgradeHelper
 import de.haukesomm.vertretungsplan.R
 import de.haukesomm.vertretungsplan.helper.ActivityHelper
 import de.haukesomm.vertretungsplan.helper.NotificationHelper
+import de.haukesomm.vertretungsplan.helper.ThemeHelper
 import de.haukesomm.vertretungsplan.plan.*
 
 class SplashActivity : AppCompatActivity(), PlanDownloaderClient {
 
-    private lateinit var downloader: PlanDownloaderTask
+    private val preferences by lazy { PreferenceManager.getDefaultSharedPreferences(this) }
 
-    private lateinit var preferences: SharedPreferences
+    private val themeHelper = ThemeHelper()
+
+    private lateinit var downloader: PlanDownloaderTask
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-
-        preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        setTheme()
 
         UpgradeHelper.checkVersion(this)
 
@@ -102,6 +105,12 @@ class SplashActivity : AppCompatActivity(), PlanDownloaderClient {
             ActivityHelper(this).launch(Intent(Intent.ACTION_VIEW, Uri.parse(Plan.homepage)))
         }
         dialog.show()
+    }
+
+
+    private fun setTheme() {
+        val darkModeBehavior = preferences.getString(getString(R.string.pref_darkModeBehavior), "")!!
+        themeHelper.setDarkModeBehavior(darkModeBehavior)
     }
 
 

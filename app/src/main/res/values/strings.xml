@@ -113,6 +113,12 @@
 
     <string name="fragment_preferences_general_category">Allgemein</string>
     <string name="fragment_preferences_general_rememberGrade_title">Zuletzt ausgewählte Klasse merken</string>
+    <string name="fragment_preferences_general_darkModeBehavior_title">Dunkles Design benutzen</string>
+    <string-array name="fragment_preferences_general_darkModeBehavior_entryTitles">
+        <item>Nach dem System richten</item>
+        <item>Immer</item>
+        <item>Niemals</item>
+    </string-array>
 
     <string name="fragment_preferences_senior_category">Oberstufe</string>
     <string name="fragment_preferences_senior_enableFilter">Kursfilter aktivieren</string>

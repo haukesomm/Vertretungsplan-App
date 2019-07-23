@@ -31,6 +31,14 @@
             android:title="@string/fragment_preferences_general_rememberGrade_title"
             android:defaultValue="true"/>
 
+        <androidx.preference.ListPreference
+            android:key="@string/pref_darkModeBehavior"
+            android:title="@string/fragment_preferences_general_darkModeBehavior_title"
+            android:summary="%s"
+            android:entries="@array/fragment_preferences_general_darkModeBehavior_entryTitles"
+            android:entryValues="@array/pref_darkModeBehavior_values"
+            android:defaultValue="system"/>
+
     </androidx.preference.PreferenceCategory>
 
     <androidx.preference.PreferenceCategory
