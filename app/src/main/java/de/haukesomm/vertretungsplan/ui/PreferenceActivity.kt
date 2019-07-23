@@ -60,16 +60,18 @@ class PreferenceActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
+
+    private val preferenceListener = SharedPreferences.OnSharedPreferenceChangeListener { prefs: SharedPreferences, key: String ->
+        val darkModeKey = getString(R.string.pref_darkModeBehavior)
+        if (key == darkModeKey) {
+            val darkModeBehavior = prefs.getString(darkModeKey, "")!!
+            themeHelper.setDarkModeBehavior(darkModeBehavior)
+        }
+    }
+
     private fun registerPreferenceListener() {
         // A reference to the listener needs to be saved because the listener would be garbage-
         // collected otherwise. This is because the internal implementation uses a WeakHashMap.
-        val preferenceListener = SharedPreferences.OnSharedPreferenceChangeListener { prefs: SharedPreferences, key: String ->
-            val darkModeKey = getString(R.string.pref_darkModeBehavior)
-            if (key == darkModeKey) {
-                val darkModeBehavior = prefs.getString(darkModeKey, "")!!
-                themeHelper.setDarkModeBehavior(darkModeBehavior)
-            }
-        }
         preferences.registerOnSharedPreferenceChangeListener(preferenceListener)
     }
 }
