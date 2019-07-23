@@ -21,9 +21,9 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/height_header"
-    android:background="@mipmap/img_drawer_header">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/Text.Title.Primary"
-            android:textColor="@android:color/white"
+            android:textColor="?android:attr/textColorPrimary"
             android:text="@string/app_name"/>
 
     </LinearLayout>
