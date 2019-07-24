@@ -45,7 +45,7 @@
     <string name="fragment_entries_plan_title">Einträge</string>
     <string name="fragment_entries_plan_day">Tag</string>
     <string name="fragment_entries_plan_grade">Klasse</string>
-    <string name="fragment_entries_plan_changes_notAvailable">Für diese Klasse steht nichts im Plan.</string>
+    <string name="fragment_entries_plan_changes_notAvailable">Für diese Klasse scheint der Unterricht normal stattzufinden.</string>
     <string name="fragment_entries_plan_courseFilter_active">Kursfilter aktiv!</string>
     <string name="fragment_entries_plan_courseFilter_turnOff_title">Kursfilter deaktivieren?</string>
     <string name="fragment_entries_plan_courseFilter_turnOff_posButton">Deaktivieren</string>
