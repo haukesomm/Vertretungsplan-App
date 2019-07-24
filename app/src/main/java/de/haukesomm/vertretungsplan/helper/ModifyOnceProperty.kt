@@ -24,21 +24,15 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 
-class ModifyOnceProperty<T>(private val default: T) : ReadWriteProperty<Any, T> {
+class ModifyOnceProperty<T>(private val initial: T) : ReadWriteProperty<Any, T> {
 
-    private object EMPTY
-
-    private var value: Any = EMPTY
+    private var value: T? = null
 
 
-    @Suppress("UNCHECKED_CAST")
-    override fun getValue(thisRef: Any, property: KProperty<*>): T = when(value) {
-        EMPTY -> default
-        else -> value as T
-    }
+    override fun getValue(thisRef: Any, property: KProperty<*>): T = value?: initial
 
     override fun setValue(thisRef: Any, property: KProperty<*>, value: T) {
-        if (value != EMPTY) {
+        if (this.value != null) {
             throw IllegalStateException("Value has already been modified")
         } else {
             this.value = value
