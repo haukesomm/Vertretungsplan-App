@@ -133,7 +133,7 @@ class PlanParser {
                 currentGrade = grade
             }
             /*
-             * Third case: Tag is a regulat table row containing an entry.
+             * Third case: Tag is a regular table row containing an entry.
              * Try to parse the entry and add a PlanEntry-object to the map.
              * If an entry cannot be parsed it will be omitted.
              */
@@ -160,7 +160,7 @@ class PlanParser {
 
         val formattedLessons = lessons.text()
         val formattedSubject = format(subject.text(), Flag.SUBSTITUTION, Flag.SUBJECT)
-        val formattedRoom = format(room.text(), Flag.SUBJECT, Flag.POSSIBLY_EMPTY)
+        val formattedRoom = format(room.text(), Flag.SUBSTITUTION, Flag.POSSIBLY_EMPTY)
         val formattedComment = format(comment.text(), Flag.POSSIBLY_EMPTY)
 
         val entry = PlanEntry(formattedLessons, formattedSubject, formattedRoom, formattedComment)
