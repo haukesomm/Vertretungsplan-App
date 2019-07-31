@@ -128,6 +128,7 @@ class PlanActivity : AppCompatActivity(), PlanDownloaderClient {
     private fun initToolbar() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
+        supportActionBar?.title = ""
     }
 
 
