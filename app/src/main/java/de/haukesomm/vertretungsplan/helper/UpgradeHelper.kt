@@ -22,9 +22,9 @@ package de.haukesomm.vertretungsplan.helper
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
-import android.preference.PreferenceManager
 import android.util.Log
 import androidx.core.content.pm.PackageInfoCompat
+import androidx.preference.PreferenceManager
 
 import de.haukesomm.vertretungsplan.R
 import de.haukesomm.vertretungsplan.background.FetchServiceManager
