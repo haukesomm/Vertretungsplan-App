@@ -26,8 +26,8 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.preference.PreferenceManager
 import androidx.annotation.RequiresApi
+import androidx.preference.PreferenceManager
 import de.haukesomm.vertretungsplan.plan.PlanDownloader
 import de.haukesomm.vertretungsplan.R
 import de.haukesomm.vertretungsplan.helper.NotificationHelper
@@ -65,7 +65,7 @@ class FetchService : IntentService(NAME) {
         val downloader = PlanDownloader()
         val plans = downloader.downloadAll()
 
-        val gradeName = intent!!.getStringExtra(INTENT_EXTRA_GRADE_NAME)
+        val gradeName = intent!!.getStringExtra(INTENT_EXTRA_GRADE_NAME)!!
         val grade = Grade(gradeName)
 
         var changesAvailable = false
