@@ -108,7 +108,7 @@ class PlanActivity : AppCompatActivity(), PlanDownloaderClient {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
+        when (item!!.itemId) {
             android.R.id.home -> drawerLayout.openDrawer(GravityCompat.START)
             R.id.menu_activity_plan_reload -> reloadPlans()
         }
