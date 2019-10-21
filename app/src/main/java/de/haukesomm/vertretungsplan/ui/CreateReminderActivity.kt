@@ -21,13 +21,13 @@ package de.haukesomm.vertretungsplan.ui
 
 import android.os.Build
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Spinner
 import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.preference.PreferenceManager
 import de.haukesomm.vertretungsplan.R
 import de.haukesomm.vertretungsplan.background.FetchRule
 import de.haukesomm.vertretungsplan.background.FetchServiceManager
@@ -66,7 +66,7 @@ class CreateReminderActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
+        when (item!!.itemId) {
             android.R.id.home -> exitNegativeResult()
             R.id.menu_activity_reminder_create_schedule -> exitPositiveResult()
         }
