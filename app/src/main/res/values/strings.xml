@@ -72,16 +72,13 @@
 
     <!-- Reminder Activity -->
 
-    <string name="activity_reminder">Erinnerungen</string>
-    <string name="activity_reminder_hint_title">Wie funktionieren Erinnerungen?</string>
+    <string name="activity_reminder">Erinnerungsregeln</string>
     <string name="activity_reminder_hint_text">Wird eine Erinnerungsregel bestehend aus einer Uhrzeit und einer Klasse angelegt, überprüft die App jeden Tag zu dieser Uhrzeit, ob in einem der Pläne Änderungen für die Klasse stehen. Falls ja, wird eine Benachrichtigung gesendet.</string>
-    <string name="activity_reminder_rules_title">Meine Erinnerungen</string>
     <string name="activity_reminder_create_title">Neue Erinnerungsregel</string>
-    <string name="activity_reminder_create_grade">Klasse</string>
     <string name="activity_reminder_create_grade_info">Für welche Klasse soll die Erinnerungsregel erstellt werden?</string>
-    <string name="activity_reminder_create_time">Uhrzeit</string>
     <string name="activity_reminder_create_time_info">Zu welcher Uhrzeit sollen die Pläne täglich auf Einträge überprüft werden?</string>
     <string name="activity_reminder_create_schedule">Erstellen</string>
+    <string name="activity_reminder_create_help">Hilfe</string>
     <string name="activity_reminder_emptyText">Tippe aus das Plus, um eine Erinnerungsregel anzulegen.</string>
     <string name="activity_reminder_delete_confirm_title">Soll diese Erinnerungsregel wirklich gelöscht werden?</string>
     <string name="activity_reminder_rules_delete_confirm_action">Löschen</string>

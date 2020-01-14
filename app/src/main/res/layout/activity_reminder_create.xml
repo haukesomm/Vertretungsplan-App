@@ -28,12 +28,11 @@
     <include
         layout="@layout/toolbar"/>
 
-    <de.haukesomm.vertretungsplan.ui.InfoBannerView
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:title="@string/activity_reminder_create_grade"
-        app:explanation="@string/activity_reminder_create_grade_info"
-        app:drawable="@drawable/ic_label"/>
+        style="@style/Subheader"
+        android:text="@string/activity_reminder_create_grade_info"/>
 
     <Spinner
         android:id="@+id/activity_reminder_create_grades"
@@ -41,18 +40,34 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default"/>
 
-    <de.haukesomm.vertretungsplan.ui.InfoBannerView
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_large"
-        app:title="@string/activity_reminder_create_time"
-        app:explanation="@string/activity_reminder_create_time_info"
-        app:drawable="@drawable/ic_time"/>
+        style="@style/Subheader"
+        android:text="@string/activity_reminder_create_time_info"/>
 
     <TimePicker
         android:id="@+id/activity_reminder_create_timepicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:timePickerMode="spinner" />
+
+    <View
+        style="@style/Divider"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Subheader"
+        android:text="@string/activity_reminder_create_help"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:layout_marginBottom="@dimen/margin_default"
+        android:text="@string/activity_reminder_hint_text"/>
 
 </LinearLayout>
