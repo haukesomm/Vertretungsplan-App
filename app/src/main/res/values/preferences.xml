@@ -23,9 +23,6 @@
     <string name="pref_previousAppVersion" translatable="false">previousAppVersion</string>
     <string name="pref_isEulaAccepted" translatable="false">isEulaAccepted</string>
 
-    <!-- App Upgrades -->
-    <string name="pref_upgrade_showNewReminderBehaviorDialog" translatable="false">showNewReminderBehaviorDialog</string>
-
     <!-- Plan -->
     <string name="pref_isGradePersistenceEnabled" translatable="false">isGradePersistenceEnabled</string>
     <string name="pref_persistedGradeName" translatable="false">persistedGradeName</string>

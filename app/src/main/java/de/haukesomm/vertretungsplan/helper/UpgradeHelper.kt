@@ -69,15 +69,5 @@ object UpgradeHelper {
          * This method is called if, and only if the new version number is truly greater then
          * the previous version.
          * */
-
-        if (previous < VERSION_CODE_V2) {
-            /* when the following preference is set, ReminderActivity will show a Dialog explaining
-            that reminders work differently in version 2.0. */
-            prefs.edit()
-                    .putBoolean(
-                            context.getString(R.string.pref_upgrade_showNewReminderBehaviorDialog),
-                            true)
-                    .apply()
-        }
     }
 }

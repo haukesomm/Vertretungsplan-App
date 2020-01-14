@@ -86,9 +86,6 @@
     <string name="activity_reminder_delete_confirm_title">Soll diese Erinnerungsregel wirklich gelöscht werden?</string>
     <string name="activity_reminder_rules_delete_confirm_action">Löschen</string>
     <string name="activity_reminder_rules_delete_keep">Behalten</string>
-    <string name="activity_reminder_newReminderBehaviorDialog_title">Willkommen bei den neu gestalteten Erinnerungen!</string>
-    <string name="activity_reminder_newReminderBehaviorDialog_text">Die Erinnerungsfunktion wurde aufgeräumt: Erinnerungsregeln gelten nun immer für alle verfügbaren Tage bzw. Pläne auf einmal. Somit ist das Anlegen von Erinnerungen für alle einfacher.</string>
-    <string name="activity_reminder_newReminderBehaviorDialog_dismiss">Verstanden</string>
 
     <string name="adapter_fetchrule_gradeFormat_default">Klasse %1$s</string>
     <string name="adapter_fetchrule_gradeFormat_senior">Jahrgang %1$s</string>

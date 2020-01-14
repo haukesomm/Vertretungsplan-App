@@ -19,7 +19,6 @@
 
 package de.haukesomm.vertretungsplan.ui
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -63,8 +62,6 @@ class ReminderActivity : AppCompatActivity(), FetchRuleAdapter.Client {
         initToolbar()
         initRuleList()
         initFab()
-
-        showNewReminderBehaviorDialogIfRequested()
     }
 
 
@@ -130,27 +127,5 @@ class ReminderActivity : AppCompatActivity(), FetchRuleAdapter.Client {
                     dialog.dismiss()
                 }
                 .show()
-    }
-
-
-    private fun showNewReminderBehaviorDialogIfRequested() {
-        val shouldDisplay = prefs.getBoolean(
-                getString(R.string.pref_upgrade_showNewReminderBehaviorDialog), false)
-        if (shouldDisplay) {
-            val dialog = AlertDialog.Builder(this)
-                    .setTitle(R.string.activity_reminder_newReminderBehaviorDialog_title)
-                    .setMessage(R.string.activity_reminder_newReminderBehaviorDialog_text)
-                    .setPositiveButton(R.string.activity_reminder_newReminderBehaviorDialog_dismiss)
-                    { dialog: DialogInterface, _ ->
-                        prefs.edit()
-                                .putBoolean(
-                                        getString(R.string.pref_upgrade_showNewReminderBehaviorDialog),
-                                        false)
-                                .apply()
-                        dialog.dismiss()
-                    }
-                    .setCancelable(false)
-            dialog.show()
-        }
     }
 }
