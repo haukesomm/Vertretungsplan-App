@@ -96,7 +96,7 @@
 
     <string name="activity_info">Über die App</string>
     <string name="activity_info_dev">Mehr vom Entwickler</string>
-    <string name="activity_info_dev_copyright">\u00A9 2016–2019 Hauke Sommerfeld\nAlle Rechte vorbehalten.</string>
+    <string name="activity_info_dev_copyright">\u00A9 2016–2020 Hauke Sommerfeld\nAlle Rechte vorbehalten.</string>
     <string name="activity_info_dev_github">GitHub</string>
     <string name="activity_info_dev_googlePlay">Google Play</string>
     <string name="activity_info_general">Generelle Informationen</string>
