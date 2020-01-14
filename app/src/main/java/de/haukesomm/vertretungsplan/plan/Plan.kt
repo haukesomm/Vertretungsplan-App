@@ -26,9 +26,9 @@ data class Plan(val title: String,
                 val entries: Map<Grade, List<PlanEntry>>) {
 
     companion object {
-        const val homepage = "https://www.gym-nw.org"
+        const val homepage = "https://www.gym-nw.de"
         val urls = listOf(
-                URL("$homepage/media/hornischer/schueler.htm"),
-                URL("$homepage/media/hornischer/schueler2.htm"))
+                URL("https://www.gym-nw.org/media/hornischer/schueler.htm"),
+                URL("https://www.gym-nw.org/media/hornischer/schueler2.htm"))
     }
 }
