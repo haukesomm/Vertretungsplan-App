@@ -88,7 +88,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_close"
-            android:tint="@color/colorAccentLight"/>
+            android:tint="@android:color/white"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -100,7 +100,7 @@
             android:maxLines="1"
             android:ellipsize="end"
             style="@style/Text.Body1.Primary"
-            android:textColor="@color/colorAccentLight"
+            android:textColor="@android:color/white"
             android:text="@string/fragment_entries_plan_courseFilter_active"/>
 
     </RelativeLayout>
