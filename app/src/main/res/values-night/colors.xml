@@ -22,7 +22,7 @@
     <!-- This file contains only values that differ from the default color set when night mode is
      enabled. -->
     <color name="colorPrimary">#FFA726</color>
-    <color name="colorAccent">#7986CB</color>
+    <color name="colorAccent">#8AB4F8</color>
     <color name="colorImportant">#EF5350</color>
     <color name="colorToolbar">@android:color/transparent</color> <!-- Match Background color -->
     <color name="colorStatusBar">@android:color/black</color>
