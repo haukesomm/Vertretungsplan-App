@@ -9,8 +9,8 @@ android {
         applicationId "de.haukesomm.vertretungsplan"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 58
-        versionName "2.2.0"
+        versionCode 59
+        versionName "2.2.1"
     }
 
     compileOptions {
