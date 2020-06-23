@@ -21,7 +21,6 @@ package de.haukesomm.vertretungsplan.ui
 
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -29,7 +28,6 @@ import android.text.Html
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceManager
 import de.haukesomm.vertretungsplan.helper.UpgradeHelper
 import de.haukesomm.vertretungsplan.R
@@ -58,13 +56,24 @@ class SplashActivity : AppCompatActivity(), PlanDownloaderClient {
             NotificationHelper(this).initNotificationChannels()
         }
 
-        beginDownload()
+        // TODO: Implement ConfigCat API-Client
+        if (true) {
+            displayEndOfLifeNotice()
+        } else {
+            beginDownload()
+        }
     }
 
     override fun onPause() {
         super.onPause()
         Log.i("SplashActivity", "Activity paused, cancelling Downloader...")
-        cancelDownload()
+        cancelDownloadIfNecessary()
+    }
+
+
+    private fun displayEndOfLifeNotice() {
+        val launchIntent = Intent(this, EndOfLifeActivity::class.java)
+        startActivity(launchIntent)
     }
 
 
@@ -73,8 +82,10 @@ class SplashActivity : AppCompatActivity(), PlanDownloaderClient {
         downloader.execute()
     }
 
-    private fun cancelDownload() {
-        downloader.cancel(true)
+    private fun cancelDownloadIfNecessary() {
+        if (this::downloader.isInitialized) {
+            downloader.cancel(true)
+        }
     }
 
     override fun onPlanDownloadSucceeded(result: List<Plan>) {

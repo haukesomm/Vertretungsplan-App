@@ -42,4 +42,5 @@ dependencies {
     implementation 'androidx.preference:preference:1.1.1'
     implementation 'com.google.android.material:material:1.2.0-alpha06'
     implementation 'org.jsoup:jsoup:1.11.3'
+    implementation group: 'com.configcat', name: 'configcat-java-client', version: '5.+'
 }
