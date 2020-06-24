@@ -29,11 +29,8 @@ import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
-import de.haukesomm.vertretungsplan.helper.UpgradeHelper
 import de.haukesomm.vertretungsplan.R
-import de.haukesomm.vertretungsplan.helper.ActivityHelper
-import de.haukesomm.vertretungsplan.helper.NotificationHelper
-import de.haukesomm.vertretungsplan.helper.ThemeHelper
+import de.haukesomm.vertretungsplan.helper.*
 import de.haukesomm.vertretungsplan.plan.*
 
 class SplashActivity : AppCompatActivity(), PlanDownloaderClient {
@@ -56,8 +53,7 @@ class SplashActivity : AppCompatActivity(), PlanDownloaderClient {
             NotificationHelper(this).initNotificationChannels()
         }
 
-        // TODO: Implement ConfigCat API-Client
-        if (true) {
+        if (ConfigCatHelper().isEndOfLifeReached()) {
             displayEndOfLifeNotice()
         } else {
             beginDownload()
