@@ -36,19 +36,18 @@
     <string name="activity_end_of_life_headline">Vielen Dank für Eure Unterstützung!</string>
     <string name="activity_end_of_life_notice">Manchmal ist es an der Zeit, sich neuen Projekten
         zu widmen. Durch mein Studium und meine Arbeit als Softwareentwickler kann ich nicht mehr
-        die Zeit in die Entwicklung der Vertretungsplan-App investieren wie noch zu meiner
+        den Aufwand in die Entwicklung der Vertretungsplan-App investieren wie noch zu meiner
         Schulzeit.\n\n
         Darüber hinaus verwendet das GymNW nun iServ, wodurch die App nicht mehr wie
-        gewohnt funktioniert. Da ein Umbau sehr viel Zeit in Anspruch nehmen würde und
-        wahrscheinlich nicht datenschutzkonform wäre, nutze ich diese Glegenheit, um die App
-        in den wohlverdienten Ruhestand zu schicken.\n\n
-        Id diesem Sinne: Ein großes Dankeschön an alle, die die Vertretungsplan-App in den Jahren
-        von 2016 bis 2020 zu dem gemacht haben, was sie heute ist. Cheers!</string>
+        gewohnt funktioniert. Da ein Umbau mit einem erheblichen Aufwand verbunden wäre, nutze ich
+        diese Glegenheit, um die App in den wohlverdienten Ruhestand zu schicken.\n\n
+        In diesem Sinne ein großes Dankeschön an alle, die die Vertretungsplan-App in den
+        vergangenen Jahren heruntergeladen haben!</string>
     <string name="activity_end_of_life_whatCanIDo_headline">Und jetzt?</string>
     <string name="activity_end_of_life_whatCanIDo_iserv_title">Schüler oder Elternteil?</string>
-    <string name="activity_end_of_life_whatCanIDo_iserv_description">Der Vertretungsplan steht
-        weiterhin über iServ zur Verfügung.</string>
-    <string name="activity_end_of_life_whatCanIDo_github_title">Angehender Programmierer?</string>
+    <string name="activity_end_of_life_whatCanIDo_iserv_description">Der offizielle Vertretungsplan
+        steht weiterhin über iServ zur Verfügung.</string>
+    <string name="activity_end_of_life_whatCanIDo_github_title">Coding-Projekt gesucht?</string>
     <string name="activity_end_of_life_whatCanIDo_github_description">Der Quellcode der App ist auf
         GitHub verfügbar und darf ausdrücklich selber angepasst werden ;-)</string>
 
