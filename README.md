@@ -1,9 +1,14 @@
 <div align="center">
 	<div><img src="artwork/logo-512x512.png" width="15%"/></div>
-	<div><a href='https://play.google.com/store/apps/details?id=de.haukesomm.vertretungsplan&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/ width="247" height="96"></a></div>
 </div>
 
 ## GymNW Vertretungsplan-App
+
+> **Hinweis**: Die Vertretungsplan-App befindet sich nicht mehr in 
+> aktiver Entwicklung und steht auch keinen neuen Benutzern mehr über den 
+> Google Playstore zur Verfügung.  
+> Dieses Repository dient lediglich als Archiv. Die App darf von findigen 
+> Entwicklern jedoch nahezu beliebig weitergeführt werden (siehe `LICENSE`).
 
 Dies ist meine inoffizielle App für den Vertretungsplan des Gymnasiums Neu Wulmstorf.  
 Sie zeigt die Einträge des Vertretungsplans übersichtlich, ohne komplizierte Abkürzungen sowie nach Tagen bzw. Klassen und Jahrgängen gefiltert an. Eine praktische Erinnerungsfunktion benachrichtigt auf Wunsch über mögliche Ausfälle oder Vertretungsstunden.
